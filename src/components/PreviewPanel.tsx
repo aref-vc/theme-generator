@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { useThemeStore } from '@/store/themeStore'
+import { ChartsPreview } from '@/components/preview/ChartsPreview'
 import {
   CheckCircle2,
   AlertCircle,
@@ -15,7 +16,8 @@ import {
   Heart,
   Zap,
   ArrowRight,
-  Download
+  Download,
+  BarChart3
 } from 'lucide-react'
 
 export function PreviewPanel() {
@@ -23,8 +25,8 @@ export function PreviewPanel() {
 
   return (
     <ScrollArea className="h-full">
-      <div className="p-8">
-        <div className="mb-8">
+      <div>
+        <div className="px-8 pt-8 pb-4">
           <h2 className="text-2xl font-bold mb-2">Live Preview</h2>
           <p className="text-muted-foreground">
             See your theme changes in real-time across various components
@@ -32,15 +34,16 @@ export function PreviewPanel() {
         </div>
 
         <Tabs defaultValue="components" className="w-full">
-          <TabsList>
-            <TabsTrigger value="components">Components</TabsTrigger>
-            <TabsTrigger value="typography">Typography</TabsTrigger>
-            <TabsTrigger value="spacing">Spacing</TabsTrigger>
-            <TabsTrigger value="effects">Effects</TabsTrigger>
-            <TabsTrigger value="colors">Colors</TabsTrigger>
+          <TabsList className="w-full flex px-8">
+            <TabsTrigger value="components" className="flex-1">Components</TabsTrigger>
+            <TabsTrigger value="charts" className="flex-1">Charts</TabsTrigger>
+            <TabsTrigger value="typography" className="flex-1">Typography</TabsTrigger>
+            <TabsTrigger value="spacing" className="flex-1">Spacing</TabsTrigger>
+            <TabsTrigger value="effects" className="flex-1">Effects</TabsTrigger>
+            <TabsTrigger value="colors" className="flex-1">Colors</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="components" className="space-y-8 mt-8">
+          <TabsContent value="components" className="px-8 py-8 space-y-8">
             {/* Buttons */}
             <section className="space-y-4">
               <h3 className="text-lg font-semibold">Buttons</h3>
@@ -68,7 +71,7 @@ export function PreviewPanel() {
             {/* Cards */}
             <section className="space-y-4">
               <h3 className="text-lg font-semibold">Cards</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
                 <Card>
                   <CardHeader>
                     <CardTitle>Card Title</CardTitle>
@@ -226,7 +229,7 @@ export function PreviewPanel() {
             </section>
           </TabsContent>
 
-          <TabsContent value="typography" className="space-y-8 mt-8">
+          <TabsContent value="typography" className="px-8 py-8 space-y-8">
             <section className="space-y-6">
               <div style={{ fontFamily: theme.typography.fontFamily }}>
                 <h1 className="text-5xl font-bold mb-4">Heading 1</h1>
@@ -265,7 +268,7 @@ export function PreviewPanel() {
             </section>
           </TabsContent>
 
-          <TabsContent value="spacing" className="space-y-8 mt-8">
+          <TabsContent value="spacing" className="px-8 py-8 space-y-8">
             <section className="space-y-6">
               <h3 className="text-lg font-semibold">Spacing System</h3>
 
@@ -347,7 +350,7 @@ export function PreviewPanel() {
             </section>
           </TabsContent>
 
-          <TabsContent value="effects" className="space-y-8 mt-8">
+          <TabsContent value="effects" className="px-8 py-8 space-y-8">
             <section className="space-y-6">
               {/* Border Radius */}
               <div className="space-y-4">
@@ -396,7 +399,7 @@ export function PreviewPanel() {
               {/* Combined Effects */}
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold">Combined Effects</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
                   <Card
                     style={{
                       borderRadius: theme.effects.borderRadius.lg,
@@ -457,7 +460,7 @@ export function PreviewPanel() {
             </section>
           </TabsContent>
 
-          <TabsContent value="colors" className="space-y-8 mt-8">
+          <TabsContent value="colors" className="px-8 py-8 space-y-8">
             <section className="space-y-6">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {Object.entries(theme.colors).map(([key, color]) => (
@@ -483,7 +486,7 @@ export function PreviewPanel() {
 
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold">Color Combinations</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
                   <Card className="bg-primary text-primary-foreground">
                     <CardHeader>
                       <CardTitle>Primary on Background</CardTitle>
@@ -522,6 +525,11 @@ export function PreviewPanel() {
                 </div>
               </div>
             </section>
+          </TabsContent>
+
+          {/* Charts Tab */}
+          <TabsContent value="charts" className="px-8 py-8">
+            <ChartsPreview />
           </TabsContent>
         </Tabs>
       </div>
