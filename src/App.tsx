@@ -25,6 +25,27 @@ function App() {
     // Helper function to determine if a color is light or dark
     const isLightColor = (l: number) => l > 50
 
+    // For light mode, we need to swap background and foreground if the background is dark
+    const backgroundIsLight = isLightColor(theme.colors.background.hsl.l)
+    const shouldSwapColors = !isDark && !backgroundIsLight
+
+    // Get the actual colors to use based on mode
+    const getBackgroundColor = () => {
+      if (shouldSwapColors) {
+        // In light mode with dark background preset, use foreground as background
+        return `${theme.colors.foreground.hsl.h} ${theme.colors.foreground.hsl.s}% ${theme.colors.foreground.hsl.l}%`
+      }
+      return `${theme.colors.background.hsl.h} ${theme.colors.background.hsl.s}% ${theme.colors.background.hsl.l}%`
+    }
+
+    const getForegroundColor = () => {
+      if (shouldSwapColors) {
+        // In light mode with dark background preset, use background as foreground
+        return `${theme.colors.background.hsl.h} ${theme.colors.background.hsl.s}% ${theme.colors.background.hsl.l}%`
+      }
+      return `${theme.colors.foreground.hsl.h} ${theme.colors.foreground.hsl.s}% ${theme.colors.foreground.hsl.l}%`
+    }
+
     // Get appropriate foreground for buttons/badges based on background lightness
     const getPrimaryForeground = () => {
       if (isLightColor(theme.colors.primary.hsl.l)) {
@@ -43,21 +64,21 @@ function App() {
         --primary: ${theme.colors.primary.hsl.h} ${theme.colors.primary.hsl.s}% ${theme.colors.primary.hsl.l}%;
         --primary-foreground: ${getPrimaryForeground()};
         --secondary: ${theme.colors.secondary.hsl.h} ${theme.colors.secondary.hsl.s}% ${theme.colors.secondary.hsl.l}%;
-        --secondary-foreground: ${theme.colors.foreground.hsl.h} ${theme.colors.foreground.hsl.s}% ${theme.colors.foreground.hsl.l}%;
+        --secondary-foreground: ${getForegroundColor()};
         --accent: ${theme.colors.accent.hsl.h} ${theme.colors.accent.hsl.s}% ${theme.colors.accent.hsl.l}%;
-        --accent-foreground: ${theme.colors.foreground.hsl.h} ${theme.colors.foreground.hsl.s}% ${theme.colors.foreground.hsl.l}%;
-        --background: ${theme.colors.background.hsl.h} ${theme.colors.background.hsl.s}% ${theme.colors.background.hsl.l}%;
-        --foreground: ${theme.colors.foreground.hsl.h} ${theme.colors.foreground.hsl.s}% ${theme.colors.foreground.hsl.l}%;
+        --accent-foreground: ${getForegroundColor()};
+        --background: ${getBackgroundColor()};
+        --foreground: ${getForegroundColor()};
         --muted: ${theme.colors.muted.hsl.h} ${theme.colors.muted.hsl.s}% ${theme.colors.muted.hsl.l}%;
-        --muted-foreground: ${theme.colors.foreground.hsl.h} ${theme.colors.foreground.hsl.s}% ${Math.max(30, Math.min(70, theme.colors.foreground.hsl.l))}%;
-        --card: ${theme.colors.card.hsl.h} ${theme.colors.card.hsl.s}% ${theme.colors.card.hsl.l}%;
-        --card-foreground: ${theme.colors.foreground.hsl.h} ${theme.colors.foreground.hsl.s}% ${theme.colors.foreground.hsl.l}%;
-        --popover: ${theme.colors.card.hsl.h} ${theme.colors.card.hsl.s}% ${theme.colors.card.hsl.l}%;
-        --popover-foreground: ${theme.colors.foreground.hsl.h} ${theme.colors.foreground.hsl.s}% ${theme.colors.foreground.hsl.l}%;
+        --muted-foreground: ${getForegroundColor()};
+        --card: ${shouldSwapColors ? getBackgroundColor() : `${theme.colors.card.hsl.h} ${theme.colors.card.hsl.s}% ${theme.colors.card.hsl.l}%`};
+        --card-foreground: ${getForegroundColor()};
+        --popover: ${shouldSwapColors ? getBackgroundColor() : `${theme.colors.card.hsl.h} ${theme.colors.card.hsl.s}% ${theme.colors.card.hsl.l}%`};
+        --popover-foreground: ${getForegroundColor()};
         --destructive: ${theme.colors.destructive.hsl.h} ${theme.colors.destructive.hsl.s}% ${theme.colors.destructive.hsl.l}%;
         --destructive-foreground: ${isLightColor(theme.colors.destructive.hsl.l) ? '0 0% 10%' : '0 0% 98%'};
-        --border: ${theme.colors.border.hsl.h} ${theme.colors.border.hsl.s}% ${theme.colors.border.hsl.l}%;
-        --input: ${theme.colors.input.hsl.h} ${theme.colors.input.hsl.s}% ${theme.colors.input.hsl.l}%;
+        --border: ${shouldSwapColors ? `${theme.colors.border.hsl.h} ${theme.colors.border.hsl.s}% ${Math.min(90, theme.colors.border.hsl.l + 60)}%` : `${theme.colors.border.hsl.h} ${theme.colors.border.hsl.s}% ${theme.colors.border.hsl.l}%`};
+        --input: ${shouldSwapColors ? `${theme.colors.input.hsl.h} ${theme.colors.input.hsl.s}% ${Math.min(90, theme.colors.input.hsl.l + 60)}%` : `${theme.colors.input.hsl.h} ${theme.colors.input.hsl.s}% ${theme.colors.input.hsl.l}%`};
         --ring: ${theme.colors.ring.hsl.h} ${theme.colors.ring.hsl.s}% ${theme.colors.ring.hsl.l}%;
 
         /* Typography */

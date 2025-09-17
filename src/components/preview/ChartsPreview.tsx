@@ -28,6 +28,7 @@ import {
   Treemap,
   Funnel,
   FunnelChart,
+  LabelList,
 } from 'recharts'
 
 // Sample data for different chart types
@@ -75,11 +76,11 @@ const scatterData = [
 ]
 
 const radialData = [
-  { name: 'Sales', uv: 31.47, fill: '#8884d8' },
-  { name: 'Marketing', uv: 26.69, fill: '#83a6ed' },
-  { name: 'Development', uv: 15.69, fill: '#8dd1e1' },
-  { name: 'Support', uv: 8.22, fill: '#82ca9d' },
-  { name: 'Admin', uv: 5.63, fill: '#a4de6c' },
+  { name: 'Sales', uv: 31.47 },
+  { name: 'Marketing', uv: 26.69 },
+  { name: 'Development', uv: 15.69 },
+  { name: 'Support', uv: 8.22 },
+  { name: 'Admin', uv: 5.63 },
 ]
 
 const treemapData = [
@@ -95,10 +96,10 @@ const treemapData = [
 ]
 
 const funnelData = [
-  { value: 100, name: 'Visit', fill: '#8884d8' },
-  { value: 80, name: 'Click', fill: '#83a6ed' },
-  { value: 50, name: 'Purchase', fill: '#8dd1e1' },
-  { value: 40, name: 'Repeat', fill: '#82ca9d' },
+  { value: 100, name: 'Visit' },
+  { value: 80, name: 'Click' },
+  { value: 50, name: 'Purchase' },
+  { value: 40, name: 'Repeat' },
 ]
 
 export function ChartsPreview() {
@@ -154,6 +155,12 @@ export function ChartsPreview() {
 
   const chartColors = [primaryColor, secondaryColor, accentColor, mutedColor]
 
+  // Update radialData with theme colors
+  const radialDataWithColors = radialData.map((item, index) => ({
+    ...item,
+    fill: chartColors[index % chartColors.length]
+  }))
+
   return (
     <div className="space-y-8">
       <div className="space-y-2">
@@ -161,6 +168,30 @@ export function ChartsPreview() {
         <p className="text-muted-foreground">
           Comprehensive chart components showcasing theme colors and styles
         </p>
+      </div>
+
+      {/* Stats Cards - moved to top */}
+      <div className="grid grid-cols-4 gap-4">
+        <div className="bg-card p-4 rounded-lg border">
+          <div className="text-2xl font-bold" style={{ color: primaryColor }}>$124,500</div>
+          <p className="text-sm text-muted-foreground">Total Revenue</p>
+          <div className="text-xs mt-2" style={{ color: secondaryColor }}>+12.5% from last month</div>
+        </div>
+        <div className="bg-card p-4 rounded-lg border">
+          <div className="text-2xl font-bold" style={{ color: secondaryColor }}>8,420</div>
+          <p className="text-sm text-muted-foreground">Active Users</p>
+          <div className="text-xs mt-2" style={{ color: accentColor }}>+5.2% from last week</div>
+        </div>
+        <div className="bg-card p-4 rounded-lg border">
+          <div className="text-2xl font-bold" style={{ color: accentColor }}>92.3%</div>
+          <p className="text-sm text-muted-foreground">Satisfaction Rate</p>
+          <div className="text-xs mt-2" style={{ color: primaryColor }}>+2.1% improvement</div>
+        </div>
+        <div className="bg-card p-4 rounded-lg border">
+          <div className="text-2xl font-bold" style={{ color: mutedColor }}>3.2s</div>
+          <p className="text-sm text-muted-foreground">Avg. Load Time</p>
+          <div className="text-xs mt-2 text-destructive">-0.5s faster</div>
+        </div>
       </div>
 
       {/* 2x2 Grid layout for charts */}
@@ -182,7 +213,7 @@ export function ChartsPreview() {
                   borderRadius: theme.effects.borderRadius.md
                 }}
               />
-              <Legend />
+              <Legend wrapperStyle={{ color: foregroundColor }} />
               <Line type="monotone" dataKey="revenue" stroke={primaryColor} strokeWidth={2} />
               <Line type="monotone" dataKey="profit" stroke={secondaryColor} strokeWidth={2} />
               <Line type="monotone" dataKey="costs" stroke={accentColor} strokeWidth={2} />
@@ -207,7 +238,7 @@ export function ChartsPreview() {
                   borderRadius: theme.effects.borderRadius.md
                 }}
               />
-              <Legend />
+              <Legend wrapperStyle={{ color: foregroundColor }} />
               <Bar dataKey="q1" fill={primaryColor} />
               <Bar dataKey="q2" fill={secondaryColor} />
               <Bar dataKey="q3" fill={accentColor} />
@@ -252,7 +283,7 @@ export function ChartsPreview() {
                 cy="50%"
                 labelLine={false}
                 label={(entry) => `${entry.name}: ${entry.percentage}%`}
-                outerRadius={80}
+                outerRadius={120}
                 fill={primaryColor}
                 dataKey="value"
               >
@@ -283,7 +314,7 @@ export function ChartsPreview() {
               <PolarRadiusAxis stroke={foregroundColor} />
               <Radar name="Team A" dataKey="A" stroke={primaryColor} fill={primaryColor} fillOpacity={0.6} />
               <Radar name="Team B" dataKey="B" stroke={secondaryColor} fill={secondaryColor} fillOpacity={0.6} />
-              <Legend />
+              <Legend wrapperStyle={{ color: foregroundColor }} />
               <Tooltip
                 contentStyle={{
                   backgroundColor: theme.colors.card.value,
@@ -335,7 +366,7 @@ export function ChartsPreview() {
                   borderRadius: theme.effects.borderRadius.md
                 }}
               />
-              <Legend />
+              <Legend wrapperStyle={{ color: foregroundColor }} />
               <Bar dataKey="costs" fill={accentColor} />
               <Line type="monotone" dataKey="revenue" stroke={primaryColor} strokeWidth={2} />
               <Area type="monotone" dataKey="profit" fill={secondaryColor} fillOpacity={0.3} stroke={secondaryColor} />
@@ -349,13 +380,12 @@ export function ChartsPreview() {
           <h3 className="text-lg font-semibold mb-4">Department Budget</h3>
           <div className="w-full" style={{ aspectRatio: '1/1' }}>
             <ResponsiveContainer width="100%" height="100%">
-            <RadialBarChart cx="50%" cy="50%" innerRadius="10%" outerRadius="90%" data={radialData}>
-              <RadialBar dataKey="uv" cornerRadius={10} fill={primaryColor}>
-                {radialData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={chartColors[index % chartColors.length]} />
-                ))}
-              </RadialBar>
-              <Legend />
+            <RadialBarChart cx="50%" cy="50%" innerRadius="10%" outerRadius="90%" data={radialDataWithColors}>
+              <RadialBar dataKey="uv" cornerRadius={10} fill={primaryColor} />
+              <Legend
+                wrapperStyle={{ color: foregroundColor }}
+                formatter={(value) => <span style={{ color: foregroundColor }}>{value}</span>}
+              />
               <Tooltip
                 contentStyle={{
                   backgroundColor: theme.colors.card.value,
@@ -368,55 +398,54 @@ export function ChartsPreview() {
           </div>
         </div>
 
-        {/* Funnel Chart */}
+        {/* Custom Funnel Chart */}
         <div className="bg-card p-4 rounded-lg border col-span-full">
           <h3 className="text-lg font-semibold mb-4">Conversion Funnel</h3>
-          <div className="w-full" style={{ aspectRatio: '2/1' }}>
-            <ResponsiveContainer width="100%" height="100%">
-            <FunnelChart>
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: theme.colors.card.value,
-                  border: `1px solid ${borderColor}`,
-                  borderRadius: theme.effects.borderRadius.md
-                }}
-              />
-              <Funnel
-                dataKey="value"
-                data={funnelData}
-                isAnimationActive
-              >
-                {funnelData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={chartColors[index % chartColors.length]} />
-                ))}
-              </Funnel>
-            </FunnelChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-      </div>
+          <div className="w-full flex justify-center items-center py-4" style={{ minHeight: '300px' }}>
+            <div className="flex flex-col items-center gap-3 w-full max-w-md">
+              {funnelData.map((entry, index) => {
+                const widthPercentage = 100 - (index * 20) // Each step is 20% narrower
+                const maxValue = funnelData[0].value
+                const relativeWidth = (entry.value / maxValue) * 100
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-2 gap-4">
-        <div className="bg-card p-4 rounded-lg border">
-          <div className="text-2xl font-bold" style={{ color: primaryColor }}>$124,500</div>
-          <p className="text-sm text-muted-foreground">Total Revenue</p>
-          <div className="text-xs mt-2" style={{ color: secondaryColor }}>+12.5% from last month</div>
-        </div>
-        <div className="bg-card p-4 rounded-lg border">
-          <div className="text-2xl font-bold" style={{ color: secondaryColor }}>8,420</div>
-          <p className="text-sm text-muted-foreground">Active Users</p>
-          <div className="text-xs mt-2" style={{ color: accentColor }}>+5.2% from last week</div>
-        </div>
-        <div className="bg-card p-4 rounded-lg border">
-          <div className="text-2xl font-bold" style={{ color: accentColor }}>92.3%</div>
-          <p className="text-sm text-muted-foreground">Satisfaction Rate</p>
-          <div className="text-xs mt-2" style={{ color: primaryColor }}>+2.1% improvement</div>
-        </div>
-        <div className="bg-card p-4 rounded-lg border">
-          <div className="text-2xl font-bold" style={{ color: mutedColor }}>3.2s</div>
-          <p className="text-sm text-muted-foreground">Avg. Load Time</p>
-          <div className="text-xs mt-2 text-destructive">-0.5s faster</div>
+                return (
+                  <div
+                    key={index}
+                    className="relative flex flex-col items-center justify-center transition-all duration-300 hover:scale-105"
+                    style={{ width: '100%' }}
+                  >
+                    <div
+                      className="relative flex items-center justify-center font-semibold transition-all duration-300"
+                      style={{
+                        width: `${relativeWidth}%`,
+                        height: '60px',
+                        backgroundColor: chartColors[index % chartColors.length],
+                        borderRadius: theme.effects.borderRadius.lg,
+                        boxShadow: theme.effects.shadows.md,
+                        minWidth: '200px'
+                      }}
+                    >
+                      <div className="flex items-center gap-4 px-4" style={{ color: '#ffffff' }}>
+                        <div className="font-bold text-lg">{entry.name}</div>
+                        <div className="text-2xl font-bold">{entry.value}%</div>
+                      </div>
+                    </div>
+                    {index < funnelData.length - 1 && (
+                      <div
+                        className="w-0 h-0 mt-1 mb-1"
+                        style={{
+                          borderLeft: '8px solid transparent',
+                          borderRight: '8px solid transparent',
+                          borderTop: `8px solid ${mutedColor}`,
+                          opacity: 0.5
+                        }}
+                      />
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </div>

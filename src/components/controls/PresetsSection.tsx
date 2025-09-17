@@ -21,7 +21,6 @@ import { Label } from '@/components/ui/label'
 const defaultPresets: Partial<Theme>[] = [
   {
     name: 'Dark Purple',
-    mode: 'dark',
     colors: {
       primary: {
         name: 'Primary',
@@ -93,7 +92,6 @@ const defaultPresets: Partial<Theme>[] = [
   },
   {
     name: 'Ocean Blue',
-    mode: 'dark',
     colors: {
       primary: {
         name: 'Primary',
@@ -165,7 +163,6 @@ const defaultPresets: Partial<Theme>[] = [
   },
   {
     name: 'Light Minimal',
-    mode: 'light',
     colors: {
       primary: {
         name: 'Primary',
@@ -237,7 +234,6 @@ const defaultPresets: Partial<Theme>[] = [
   },
   {
     name: 'Sunset Glow',
-    mode: 'dark',
     colors: {
       primary: {
         name: 'Primary',
@@ -310,7 +306,6 @@ const defaultPresets: Partial<Theme>[] = [
   // New Preset 1: Barn Red & Prussian Blue
   {
     name: 'Vintage Americana',
-    mode: 'dark',
     colors: {
       primary: {
         name: 'Primary',
@@ -383,7 +378,6 @@ const defaultPresets: Partial<Theme>[] = [
   // New Preset 2: Sky Blue & Orange
   {
     name: 'Ocean Sunset',
-    mode: 'dark',
     colors: {
       primary: {
         name: 'Primary',
@@ -456,7 +450,6 @@ const defaultPresets: Partial<Theme>[] = [
   // New Preset 3: Red Pantone & Berkeley Blue
   {
     name: 'Nautical Dream',
-    mode: 'light',
     colors: {
       primary: {
         name: 'Primary',
@@ -529,7 +522,6 @@ const defaultPresets: Partial<Theme>[] = [
   // New Preset 4: Prussian Blue & Fire Engine Red
   {
     name: 'Bold & Bright',
-    mode: 'dark',
     colors: {
       primary: {
         name: 'Primary',
@@ -602,7 +594,6 @@ const defaultPresets: Partial<Theme>[] = [
   // New Preset 5: Eggshell & Burnt Sienna
   {
     name: 'Autumn Comfort',
-    mode: 'light',
     colors: {
       primary: {
         name: 'Primary',
@@ -675,7 +666,6 @@ const defaultPresets: Partial<Theme>[] = [
   // New Preset 6: Floral White & Flame
   {
     name: 'Warm Earth',
-    mode: 'dark',
     colors: {
       primary: {
         name: 'Primary',
@@ -748,7 +738,6 @@ const defaultPresets: Partial<Theme>[] = [
   // New Preset 7: Bittersweet & Cerulean
   {
     name: 'Retro Pop',
-    mode: 'light',
     colors: {
       primary: {
         name: 'Primary',
@@ -821,7 +810,6 @@ const defaultPresets: Partial<Theme>[] = [
   // New Preset 8: Jasmine & Space Cadet
   {
     name: 'Tropical Twilight',
-    mode: 'dark',
     colors: {
       primary: {
         name: 'Primary',
@@ -894,7 +882,6 @@ const defaultPresets: Partial<Theme>[] = [
   // New Preset 9: Bright Pink & Midnight Green
   {
     name: 'Neon Ocean',
-    mode: 'dark',
     colors: {
       primary: {
         name: 'Primary',
@@ -1075,7 +1062,15 @@ export function PresetsSection() {
               <PresetButton
                 key={preset.name}
                 preset={preset}
-                onLoad={() => loadPreset({ ...theme, ...preset } as Theme)}
+                onLoad={() => {
+                  // Apply preset colors while preserving current mode
+                  const updatedTheme = {
+                    ...theme,
+                    ...preset,
+                    mode: theme.mode // Keep current mode
+                  } as Theme
+                  loadPreset(updatedTheme)
+                }}
                 isActive={isPresetActive(preset)}
               />
             ))}
