@@ -17,7 +17,30 @@ import {
   Zap,
   ArrowRight,
   Download,
-  BarChart3
+  BarChart3,
+  Star,
+  Clock,
+  MapPin,
+  Calendar,
+  Check,
+  X,
+  Package,
+  Shield,
+  TrendingUp,
+  Activity,
+  DollarSign,
+  ShoppingCart,
+  CreditCard,
+  Settings,
+  Bell,
+  Search,
+  Menu,
+  User,
+  Home,
+  FileText,
+  PieChart,
+  Layers,
+  LogOut
 } from 'lucide-react'
 
 export function PreviewPanel() {
@@ -70,12 +93,13 @@ export function PreviewPanel() {
 
             {/* Cards */}
             <section className="space-y-4">
-              <h3 className="text-lg font-semibold">Cards</h3>
+              <h3 className="text-lg font-semibold">Cards - Multiple Variants</h3>
               <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+                {/* Basic Card */}
                 <Card>
                   <CardHeader>
-                    <CardTitle>Card Title</CardTitle>
-                    <CardDescription>Card description goes here</CardDescription>
+                    <CardTitle>Basic Card</CardTitle>
+                    <CardDescription>Simple card with standard layout</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <p>This is the card content area where you can place any content.</p>
@@ -85,6 +109,7 @@ export function PreviewPanel() {
                   </CardFooter>
                 </Card>
 
+                {/* Interactive Card */}
                 <Card>
                   <CardHeader>
                     <div className="flex items-center justify-between">
@@ -111,6 +136,85 @@ export function PreviewPanel() {
                     </Button>
                   </CardFooter>
                 </Card>
+
+                {/* Feature Card */}
+                <Card className="border-primary/20 bg-primary/5">
+                  <CardHeader>
+                    <Shield className="h-8 w-8 text-primary mb-2" />
+                    <CardTitle>Premium Features</CardTitle>
+                    <CardDescription>Advanced security & performance</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2">
+                      <li className="flex items-center gap-2">
+                        <Check className="h-4 w-4 text-green-500" />
+                        <span className="text-sm">End-to-end encryption</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check className="h-4 w-4 text-green-500" />
+                        <span className="text-sm">99.9% uptime SLA</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check className="h-4 w-4 text-green-500" />
+                        <span className="text-sm">24/7 priority support</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                  <CardFooter>
+                    <Button className="w-full">Upgrade Now</Button>
+                  </CardFooter>
+                </Card>
+
+                {/* Hover Effect Card */}
+                <Card className="transition-all hover:shadow-xl hover:-translate-y-1 cursor-pointer">
+                  <CardHeader>
+                    <CardTitle>Hover Card</CardTitle>
+                    <CardDescription>Interactive hover effects</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 rounded-md mb-4" />
+                    <p className="text-sm">Hover over this card to see the elevation effect.</p>
+                  </CardContent>
+                  <CardFooter>
+                    <Button variant="ghost" className="w-full">Learn More</Button>
+                  </CardFooter>
+                </Card>
+
+                {/* Gradient Border Card */}
+                <Card className="relative bg-gradient-to-r from-primary to-secondary p-[1px]">
+                  <div className="bg-background rounded-lg p-6">
+                    <CardHeader className="p-0 mb-4">
+                      <CardTitle>Gradient Border</CardTitle>
+                      <CardDescription>Eye-catching gradient outline</CardDescription>
+                    </CardHeader>
+                    <CardContent className="p-0">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                          <span className="text-sm font-medium">4.9 Rating</span>
+                        </div>
+                        <Badge variant="secondary">Premium</Badge>
+                      </div>
+                    </CardContent>
+                  </div>
+                </Card>
+
+                {/* Minimal Card */}
+                <Card className="border-0 shadow-none bg-muted/50">
+                  <CardHeader>
+                    <div className="flex items-center gap-2">
+                      <Package className="h-5 w-5 text-muted-foreground" />
+                      <CardTitle className="text-base">Minimal Design</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">Clean and simple card design with subtle background.</p>
+                    <div className="mt-4 flex gap-2">
+                      <Button size="sm" variant="outline">Details</Button>
+                      <Button size="sm">Action</Button>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             </section>
 
@@ -118,17 +222,60 @@ export function PreviewPanel() {
 
             {/* Form Elements */}
             <section className="space-y-4">
-              <h3 className="text-lg font-semibold">Form Elements</h3>
-              <div className="max-w-md space-y-4">
-                <div className="space-y-2">
-                  <Label>Text Input</Label>
-                  <Input placeholder="Enter text..." />
+              <h3 className="text-lg font-semibold">Form Elements - Extended</h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <Label>Text Input</Label>
+                    <Input placeholder="Enter text..." />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Email Input</Label>
+                    <Input type="email" placeholder="you@example.com" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Password Input</Label>
+                    <Input type="password" placeholder="••••••••" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Number Input</Label>
+                    <Input type="number" placeholder="0" min="0" max="100" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Disabled Input</Label>
+                    <Input placeholder="Disabled" disabled />
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <Label>Disabled Input</Label>
-                  <Input placeholder="Disabled" disabled />
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <Label>Search Input</Label>
+                    <div className="relative">
+                      <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+                      <Input className="pl-8" placeholder="Search..." />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Date Input</Label>
+                    <Input type="date" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Time Input</Label>
+                    <Input type="time" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>File Input</Label>
+                    <Input type="file" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Input with Icon</Label>
+                    <div className="relative">
+                      <Input className="pr-8" placeholder="Amount" />
+                      <DollarSign className="absolute right-2 top-2.5 h-4 w-4 text-muted-foreground" />
+                    </div>
+                  </div>
                 </div>
               </div>
+
             </section>
 
             <Separator />
@@ -136,7 +283,7 @@ export function PreviewPanel() {
             {/* Alerts */}
             <section className="space-y-4">
               <h3 className="text-lg font-semibold">Alerts & Notifications</h3>
-              <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <Card className="border-green-500/20 bg-green-500/5">
                   <CardHeader className="pb-3">
                     <div className="flex items-center gap-2">
@@ -172,6 +319,42 @@ export function PreviewPanel() {
                     <p className="text-sm">This is an informational message.</p>
                   </CardContent>
                 </Card>
+
+                <Card className="border-yellow-500/20 bg-yellow-500/5">
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center gap-2">
+                      <AlertCircle className="h-5 w-5 text-yellow-500" />
+                      <CardTitle className="text-base">Warning</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm">Please review before proceeding.</p>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-purple-500/20 bg-purple-500/5">
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center gap-2">
+                      <Zap className="h-5 w-5 text-purple-500" />
+                      <CardTitle className="text-base">Update</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm">New features are now available.</p>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-orange-500/20 bg-orange-500/5">
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center gap-2">
+                      <Clock className="h-5 w-5 text-orange-500" />
+                      <CardTitle className="text-base">Pending</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm">Action required within 24 hours.</p>
+                  </CardContent>
+                </Card>
               </div>
             </section>
 
@@ -179,7 +362,7 @@ export function PreviewPanel() {
 
             {/* Stats Cards */}
             <section className="space-y-4">
-              <h3 className="text-lg font-semibold">Stats Cards</h3>
+              <h3 className="text-lg font-semibold">Stats Cards with Visual Indicators</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <Card>
                   <CardHeader className="pb-2">
@@ -187,12 +370,21 @@ export function PreviewPanel() {
                       <CardTitle className="text-sm font-medium text-muted-foreground">
                         Total Users
                       </CardTitle>
-                      <Users className="h-4 w-4 text-muted-foreground" />
+                      <div className="h-8 w-8 rounded-full bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center">
+                        <Users className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                      </div>
                     </div>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">2,543</div>
-                    <p className="text-xs text-muted-foreground">+12% from last month</p>
+                    <div className="flex items-center gap-2 text-xs">
+                      <TrendingUp className="h-3 w-3 text-green-500" />
+                      <span className="text-green-500">+12%</span>
+                      <span className="text-muted-foreground">from last month</span>
+                    </div>
+                    <div className="mt-2 h-1 bg-secondary rounded-full overflow-hidden">
+                      <div className="h-full bg-blue-500 rounded-full" style={{ width: '72%' }} />
+                    </div>
                   </CardContent>
                 </Card>
 
@@ -202,12 +394,21 @@ export function PreviewPanel() {
                       <CardTitle className="text-sm font-medium text-muted-foreground">
                         Revenue
                       </CardTitle>
-                      <Download className="h-4 w-4 text-muted-foreground" />
+                      <div className="h-8 w-8 rounded-full bg-green-100 dark:bg-green-900/20 flex items-center justify-center">
+                        <DollarSign className="h-4 w-4 text-green-600 dark:text-green-400" />
+                      </div>
                     </div>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">$45,231</div>
-                    <p className="text-xs text-muted-foreground">+8.2% from last month</p>
+                    <div className="flex items-center gap-2 text-xs">
+                      <TrendingUp className="h-3 w-3 text-green-500" />
+                      <span className="text-green-500">+8.2%</span>
+                      <span className="text-muted-foreground">from last month</span>
+                    </div>
+                    <div className="mt-2 h-1 bg-secondary rounded-full overflow-hidden">
+                      <div className="h-full bg-green-500 rounded-full" style={{ width: '85%' }} />
+                    </div>
                   </CardContent>
                 </Card>
 
@@ -217,15 +418,487 @@ export function PreviewPanel() {
                       <CardTitle className="text-sm font-medium text-muted-foreground">
                         Active Now
                       </CardTitle>
-                      <Zap className="h-4 w-4 text-muted-foreground" />
+                      <div className="h-8 w-8 rounded-full bg-purple-100 dark:bg-purple-900/20 flex items-center justify-center">
+                        <Activity className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+                      </div>
                     </div>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">573</div>
-                    <p className="text-xs text-muted-foreground">+201 since last hour</p>
+                    <div className="flex items-center gap-2 text-xs">
+                      <Zap className="h-3 w-3 text-purple-500" />
+                      <span className="text-purple-500">+201</span>
+                      <span className="text-muted-foreground">since last hour</span>
+                    </div>
+                    <div className="mt-2 flex gap-0.5">
+                      {[100, 80, 120, 90, 110, 130, 573].map((val, i) => (
+                        <div key={i} className="flex-1 bg-secondary rounded-full overflow-hidden" style={{ height: `${(val / 573) * 20}px` }}>
+                          <div className="h-full bg-purple-500" />
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader className="pb-2">
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="text-sm font-medium text-muted-foreground">
+                        Conversion Rate
+                      </CardTitle>
+                      <div className="h-8 w-8 rounded-full bg-orange-100 dark:bg-orange-900/20 flex items-center justify-center">
+                        <TrendingUp className="h-4 w-4 text-orange-600 dark:text-orange-400" />
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">3.24%</div>
+                    <div className="flex items-center gap-2 text-xs">
+                      <TrendingUp className="h-3 w-3 text-green-500" />
+                      <span className="text-green-500">+0.5%</span>
+                      <span className="text-muted-foreground">improvement</span>
+                    </div>
+                    <div className="mt-2 relative h-8 w-8">
+                      <svg className="w-full h-full -rotate-90">
+                        <circle cx="16" cy="16" r="12" stroke="currentColor" strokeWidth="3" fill="none" className="text-secondary" />
+                        <circle cx="16" cy="16" r="12" stroke="currentColor" strokeWidth="3" fill="none"
+                          className="text-orange-500"
+                          strokeDasharray={`${3.24 * 75.4 / 100} 75.4`} />
+                      </svg>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="text-[8px] font-bold">3.2</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader className="pb-2">
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="text-sm font-medium text-muted-foreground">
+                        Server Uptime
+                      </CardTitle>
+                      <div className="h-8 w-8 rounded-full bg-cyan-100 dark:bg-cyan-900/20 flex items-center justify-center">
+                        <Shield className="h-4 w-4 text-cyan-600 dark:text-cyan-400" />
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">99.9%</div>
+                    <div className="flex items-center gap-2 text-xs">
+                      <Check className="h-3 w-3 text-green-500" />
+                      <span className="text-green-500">Operational</span>
+                      <span className="text-muted-foreground">30d</span>
+                    </div>
+                    <div className="mt-2 grid grid-cols-10 gap-0.5">
+                      {Array.from({ length: 30 }).map((_, i) => (
+                        <div
+                          key={i}
+                          className={`h-1 rounded-full ${i === 15 ? 'bg-red-500' : 'bg-green-500'}`}
+                        />
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader className="pb-2">
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="text-sm font-medium text-muted-foreground">
+                        Performance Score
+                      </CardTitle>
+                      <div className="h-8 w-8 rounded-full bg-pink-100 dark:bg-pink-900/20 flex items-center justify-center">
+                        <BarChart3 className="h-4 w-4 text-pink-600 dark:text-pink-400" />
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">92/100</div>
+                    <div className="flex items-center gap-2 text-xs">
+                      <TrendingUp className="h-3 w-3 text-green-500" />
+                      <span className="text-green-500">+5 points</span>
+                      <span className="text-muted-foreground">this week</span>
+                    </div>
+                    <div className="mt-2 flex gap-1">
+                      <div className="flex-1">
+                        <div className="text-[8px] text-muted-foreground mb-0.5">Speed</div>
+                        <div className="h-1 bg-secondary rounded-full overflow-hidden">
+                          <div className="h-full bg-green-500 rounded-full" style={{ width: '95%' }} />
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <div className="text-[8px] text-muted-foreground mb-0.5">SEO</div>
+                        <div className="h-1 bg-secondary rounded-full overflow-hidden">
+                          <div className="h-full bg-yellow-500 rounded-full" style={{ width: '88%' }} />
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <div className="text-[8px] text-muted-foreground mb-0.5">A11y</div>
+                        <div className="h-1 bg-secondary rounded-full overflow-hidden">
+                          <div className="h-full bg-green-500 rounded-full" style={{ width: '93%' }} />
+                        </div>
+                      </div>
+                    </div>
                   </CardContent>
                 </Card>
               </div>
+            </section>
+
+            <Separator />
+
+            {/* Progress Status with Steps and Checklist */}
+            <section className="space-y-4">
+              <h3 className="text-lg font-semibold">Progress & Tasks</h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                {/* Progress Status */}
+                <Card>
+                <CardContent className="pt-6">
+                  <div className="space-y-4">
+                    <div className="flex justify-between text-sm">
+                      <span>Overall Progress</span>
+                      <span className="font-medium">65%</span>
+                    </div>
+                    <div className="w-full bg-secondary rounded-full h-2">
+                      <div className="bg-primary h-2 rounded-full" style={{ width: '65%' }} />
+                    </div>
+
+                    <div className="mt-6 space-y-4">
+                      {/* Step 1 - Completed */}
+                      <div className="flex items-start gap-3">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                          <Check className="h-4 w-4 text-white" />
+                        </div>
+                        <div className="flex-1">
+                          <p className="font-medium text-sm">Project Setup</p>
+                          <p className="text-xs text-muted-foreground">Completed on March 15, 2024</p>
+                        </div>
+                      </div>
+
+                      {/* Step 2 - Current */}
+                      <div className="flex items-start gap-3">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+                          <span className="text-xs text-primary-foreground font-bold">2</span>
+                        </div>
+                        <div className="flex-1">
+                          <p className="font-medium text-sm">Development Phase</p>
+                          <p className="text-xs text-muted-foreground">In progress - 75% complete</p>
+                          <div className="mt-2 w-full bg-secondary rounded-full h-1.5">
+                            <div className="bg-primary h-1.5 rounded-full" style={{ width: '75%' }} />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Step 3 - Pending */}
+                      <div className="flex items-start gap-3 opacity-50">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-muted flex items-center justify-center">
+                          <span className="text-xs text-muted-foreground font-bold">3</span>
+                        </div>
+                        <div className="flex-1">
+                          <p className="font-medium text-sm">Testing & QA</p>
+                          <p className="text-xs text-muted-foreground">Pending</p>
+                        </div>
+                      </div>
+
+                      {/* Step 4 - Pending */}
+                      <div className="flex items-start gap-3 opacity-50">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-muted flex items-center justify-center">
+                          <span className="text-xs text-muted-foreground font-bold">4</span>
+                        </div>
+                        <div className="flex-1">
+                          <p className="font-medium text-sm">Deployment</p>
+                          <p className="text-xs text-muted-foreground">Pending</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Checklist */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-base">Task Checklist</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input type="checkbox" className="rounded border-gray-300" defaultChecked />
+                      <span className="text-sm line-through text-muted-foreground">Complete project documentation</span>
+                    </label>
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input type="checkbox" className="rounded border-gray-300" defaultChecked />
+                      <span className="text-sm line-through text-muted-foreground">Review code changes</span>
+                    </label>
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input type="checkbox" className="rounded border-gray-300" defaultChecked />
+                      <span className="text-sm line-through text-muted-foreground">Write unit tests</span>
+                    </label>
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input type="checkbox" className="rounded border-gray-300" />
+                      <span className="text-sm">Deploy to production</span>
+                    </label>
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input type="checkbox" className="rounded border-gray-300" />
+                      <span className="text-sm">Send notification to team</span>
+                    </label>
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input type="checkbox" className="rounded border-gray-300" />
+                      <span className="text-sm">Update documentation</span>
+                    </label>
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input type="checkbox" className="rounded border-gray-300" />
+                      <span className="text-sm">Schedule review meeting</span>
+                    </label>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </section>
+
+            <Separator />
+
+            {/* Product Pricing Card */}
+            <section className="space-y-4">
+              <h3 className="text-lg font-semibold">Product Card with Pricing</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <Card className="overflow-hidden">
+                  <div className="aspect-square bg-gradient-to-br from-secondary to-secondary/50 relative">
+                    <Badge className="absolute top-2 right-2">-25%</Badge>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Package className="h-24 w-24 text-muted-foreground/30" />
+                    </div>
+                  </div>
+                  <CardContent className="p-4">
+                    <div className="space-y-2">
+                      <h4 className="font-semibold">Premium Package</h4>
+                      <p className="text-sm text-muted-foreground">Professional toolkit for developers</p>
+                      <div className="flex items-center gap-2">
+                        <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                        <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                        <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                        <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                        <Star className="h-4 w-4 text-yellow-500" />
+                        <span className="text-sm text-muted-foreground">(4.5)</span>
+                      </div>
+                      <div className="flex items-baseline gap-2 pt-2">
+                        <span className="text-2xl font-bold">$49</span>
+                        <span className="text-sm text-muted-foreground line-through">$65</span>
+                        <span className="text-sm text-green-500">Save $16</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                  <CardFooter className="p-4 pt-0 gap-2">
+                    <Button className="flex-1">
+                      <ShoppingCart className="h-4 w-4 mr-2" />
+                      Add to Cart
+                    </Button>
+                    <Button variant="outline" size="icon">
+                      <Heart className="h-4 w-4" />
+                    </Button>
+                  </CardFooter>
+                </Card>
+
+                <Card className="overflow-hidden border-primary">
+                  <div className="aspect-square bg-gradient-to-br from-primary/20 to-primary/5 relative">
+                    <Badge className="absolute top-2 left-2 bg-primary">Popular</Badge>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Shield className="h-24 w-24 text-primary/30" />
+                    </div>
+                  </div>
+                  <CardContent className="p-4">
+                    <div className="space-y-2">
+                      <h4 className="font-semibold">Enterprise Suite</h4>
+                      <p className="text-sm text-muted-foreground">Complete solution for large teams</p>
+                      <div className="flex items-center gap-2">
+                        <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                        <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                        <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                        <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                        <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                        <span className="text-sm text-muted-foreground">(5.0)</span>
+                      </div>
+                      <div className="flex items-baseline gap-2 pt-2">
+                        <span className="text-2xl font-bold">$199</span>
+                        <Badge variant="secondary">Best Value</Badge>
+                      </div>
+                    </div>
+                  </CardContent>
+                  <CardFooter className="p-4 pt-0 gap-2">
+                    <Button className="flex-1">
+                      <CreditCard className="h-4 w-4 mr-2" />
+                      Buy Now
+                    </Button>
+                    <Button variant="outline" size="icon">
+                      <Heart className="h-4 w-4" />
+                    </Button>
+                  </CardFooter>
+                </Card>
+
+                <Card className="overflow-hidden">
+                  <div className="aspect-square bg-gradient-to-br from-accent/20 to-accent/5 relative">
+                    <Badge variant="outline" className="absolute top-2 right-2">New</Badge>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Zap className="h-24 w-24 text-accent/30" />
+                    </div>
+                  </div>
+                  <CardContent className="p-4">
+                    <div className="space-y-2">
+                      <h4 className="font-semibold">Starter Pack</h4>
+                      <p className="text-sm text-muted-foreground">Perfect for individual developers</p>
+                      <div className="flex items-center gap-2">
+                        <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                        <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                        <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                        <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                        <Star className="h-4 w-4 text-muted-foreground" />
+                        <span className="text-sm text-muted-foreground">(4.0)</span>
+                      </div>
+                      <div className="flex items-baseline gap-2 pt-2">
+                        <span className="text-2xl font-bold">$19</span>
+                        <span className="text-sm text-muted-foreground">/month</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                  <CardFooter className="p-4 pt-0 gap-2">
+                    <Button variant="outline" className="flex-1">
+                      Start Free Trial
+                    </Button>
+                    <Button variant="outline" size="icon">
+                      <Heart className="h-4 w-4" />
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </div>
+            </section>
+
+            <Separator />
+
+            {/* Admin Panel Design */}
+            <section className="space-y-4">
+              <h3 className="text-lg font-semibold">Admin Panel Layout</h3>
+              <Card className="overflow-hidden">
+                <div className="flex h-[500px]">
+                  {/* Sidebar */}
+                  <div className="w-64 bg-card border-r">
+                    <div className="p-4 border-b">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+                          <Layers className="h-6 w-6 text-primary-foreground" />
+                        </div>
+                        <div>
+                          <p className="font-semibold">Admin Panel</p>
+                          <p className="text-xs text-muted-foreground">v2.0.1</p>
+                        </div>
+                      </div>
+                    </div>
+                    <nav className="p-4 space-y-2">
+                      <a className="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary text-primary-foreground">
+                        <Home className="h-4 w-4" />
+                        <span className="text-sm font-medium">Dashboard</span>
+                      </a>
+                      <a className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors">
+                        <Users className="h-4 w-4" />
+                        <span className="text-sm">Users</span>
+                        <Badge className="ml-auto" variant="secondary">12</Badge>
+                      </a>
+                      <a className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors">
+                        <FileText className="h-4 w-4" />
+                        <span className="text-sm">Content</span>
+                      </a>
+                      <a className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors">
+                        <PieChart className="h-4 w-4" />
+                        <span className="text-sm">Analytics</span>
+                      </a>
+                      <a className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors">
+                        <Settings className="h-4 w-4" />
+                        <span className="text-sm">Settings</span>
+                      </a>
+                      <div className="pt-4 mt-4 border-t">
+                        <a className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-destructive/10 hover:text-destructive transition-colors">
+                          <LogOut className="h-4 w-4" />
+                          <span className="text-sm">Logout</span>
+                        </a>
+                      </div>
+                    </nav>
+                  </div>
+
+                  {/* Main Content */}
+                  <div className="flex-1 flex flex-col">
+                    {/* Header */}
+                    <header className="h-14 border-b px-6 flex items-center justify-between bg-background">
+                      <div className="flex items-center gap-4">
+                        <Button variant="ghost" size="icon">
+                          <Menu className="h-5 w-5" />
+                        </Button>
+                        <div className="relative">
+                          <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+                          <Input className="pl-8 w-64" placeholder="Search..." />
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <Button variant="ghost" size="icon" className="relative">
+                          <Bell className="h-5 w-5" />
+                          <span className="absolute top-1 right-1 w-2 h-2 bg-destructive rounded-full" />
+                        </Button>
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+                            <User className="h-4 w-4 text-primary-foreground" />
+                          </div>
+                          <span className="text-sm font-medium">Admin User</span>
+                        </div>
+                      </div>
+                    </header>
+
+                    {/* Dashboard Content */}
+                    <div className="flex-1 p-6 bg-muted/30">
+                      <div className="grid grid-cols-4 gap-4 mb-6">
+                        <Card className="p-4">
+                          <div className="flex items-center justify-between mb-2">
+                            <p className="text-sm text-muted-foreground">Total Users</p>
+                            <Users className="h-4 w-4 text-muted-foreground" />
+                          </div>
+                          <p className="text-2xl font-bold">1,284</p>
+                          <p className="text-xs text-green-500">+12% from last month</p>
+                        </Card>
+                        <Card className="p-4">
+                          <div className="flex items-center justify-between mb-2">
+                            <p className="text-sm text-muted-foreground">Revenue</p>
+                            <DollarSign className="h-4 w-4 text-muted-foreground" />
+                          </div>
+                          <p className="text-2xl font-bold">$52,420</p>
+                          <p className="text-xs text-green-500">+8% from last month</p>
+                        </Card>
+                        <Card className="p-4">
+                          <div className="flex items-center justify-between mb-2">
+                            <p className="text-sm text-muted-foreground">Active Now</p>
+                            <Activity className="h-4 w-4 text-muted-foreground" />
+                          </div>
+                          <p className="text-2xl font-bold">423</p>
+                          <p className="text-xs text-muted-foreground">Real-time</p>
+                        </Card>
+                        <Card className="p-4">
+                          <div className="flex items-center justify-between mb-2">
+                            <p className="text-sm text-muted-foreground">Growth</p>
+                            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+                          </div>
+                          <p className="text-2xl font-bold">+24.5%</p>
+                          <p className="text-xs text-green-500">Above target</p>
+                        </Card>
+                      </div>
+
+                      {/* Chart Placeholder */}
+                      <Card className="p-6">
+                        <CardHeader className="px-0 pt-0">
+                          <CardTitle>Analytics Overview</CardTitle>
+                        </CardHeader>
+                        <div className="h-48 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg flex items-center justify-center">
+                          <BarChart3 className="h-12 w-12 text-muted-foreground/30" />
+                        </div>
+                      </Card>
+                    </div>
+                  </div>
+                </div>
+              </Card>
             </section>
           </TabsContent>
 
