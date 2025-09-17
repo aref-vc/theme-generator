@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { useThemeStore } from '@/store/themeStore'
 import { ChartsPreview } from '@/components/preview/ChartsPreview'
+import { AnimationsPreview } from '@/components/preview/AnimationsPreview'
 import {
   CheckCircle2,
   AlertCircle,
@@ -1240,114 +1241,8 @@ export function PreviewPanel() {
             </section>
           </TabsContent>
 
-          <TabsContent value="effects" className="px-8 py-8 space-y-8">
-            <section className="space-y-6">
-              {/* Border Radius */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold">Border Radius</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {Object.entries(theme.effects.borderRadius).map(([key, value]) => (
-                    <div key={key} className="space-y-2">
-                      <div
-                        className="h-24 bg-primary flex items-center justify-center text-primary-foreground text-sm"
-                        style={{ borderRadius: value }}
-                      >
-                        {key}
-                      </div>
-                      <p className="text-xs text-center text-muted-foreground font-mono">
-                        {value}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <Separator />
-
-              {/* Shadows */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold">Shadows</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {Object.entries(theme.effects.shadows).map(([key, value]) => (
-                    <div key={key} className="space-y-2">
-                      <div
-                        className="h-32 bg-card rounded-lg flex items-center justify-center"
-                        style={{ boxShadow: value }}
-                      >
-                        <span className="text-sm font-medium">Shadow {key}</span>
-                      </div>
-                      <p className="text-xs text-muted-foreground font-mono text-center">
-                        {key}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <Separator />
-
-              {/* Combined Effects */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold">Combined Effects</h3>
-                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-                  <Card
-                    style={{
-                      borderRadius: theme.effects.borderRadius.lg,
-                      boxShadow: theme.effects.shadows.md
-                    }}
-                  >
-                    <CardHeader>
-                      <CardTitle>Medium Shadow + Large Radius</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p>This card combines medium shadow with large border radius.</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card
-                    style={{
-                      borderRadius: theme.effects.borderRadius.xl,
-                      boxShadow: theme.effects.shadows.lg
-                    }}
-                  >
-                    <CardHeader>
-                      <CardTitle>Large Shadow + XL Radius</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p>This card combines large shadow with extra large border radius.</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card
-                    style={{
-                      borderRadius: theme.effects.borderRadius['2xl'],
-                      boxShadow: theme.effects.shadows.xl
-                    }}
-                  >
-                    <CardHeader>
-                      <CardTitle>XL Shadow + 2XL Radius</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p>This card combines extra large shadow with 2XL border radius.</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card
-                    style={{
-                      borderRadius: theme.effects.borderRadius.sm,
-                      boxShadow: theme.effects.shadows.inner
-                    }}
-                  >
-                    <CardHeader>
-                      <CardTitle>Inner Shadow + Small Radius</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p>This card uses inner shadow with small border radius.</p>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-            </section>
+          <TabsContent value="effects" className="px-8 py-8">
+            <AnimationsPreview />
           </TabsContent>
 
 
