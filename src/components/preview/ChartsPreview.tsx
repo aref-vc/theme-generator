@@ -29,6 +29,8 @@ import {
   Funnel,
   FunnelChart,
   LabelList,
+  Sankey,
+  Rectangle,
 } from 'recharts'
 
 // Sample data for different chart types
@@ -102,6 +104,51 @@ const funnelData = [
   { value: 40, name: 'Repeat' },
 ]
 
+// New chart data
+const stackedAreaData = [
+  { month: 'Jan', mobile: 2000, desktop: 3000, tablet: 1000 },
+  { month: 'Feb', mobile: 2500, desktop: 2800, tablet: 1200 },
+  { month: 'Mar', mobile: 3000, desktop: 3200, tablet: 1100 },
+  { month: 'Apr', mobile: 2800, desktop: 3500, tablet: 1300 },
+  { month: 'May', mobile: 3200, desktop: 3800, tablet: 1400 },
+  { month: 'Jun', mobile: 3500, desktop: 4000, tablet: 1500 },
+]
+
+const waterfallData = [
+  { name: 'Start', value: 2000, fill: 'primary' },
+  { name: 'Sales', value: 500, fill: 'accent' },
+  { name: 'Refunds', value: -200, fill: 'destructive' },
+  { name: 'Marketing', value: 300, fill: 'accent' },
+  { name: 'Costs', value: -400, fill: 'destructive' },
+  { name: 'Profit', value: 300, fill: 'accent' },
+  { name: 'End', value: 2500, fill: 'primary' },
+]
+
+const gaugeData = [
+  { name: 'Performance', value: 75, fill: 'primary' },
+]
+
+const sankeyData = {
+  nodes: [
+    { name: 'Homepage' },
+    { name: 'Product Page' },
+    { name: 'Cart' },
+    { name: 'Checkout' },
+    { name: 'Success' },
+    { name: 'Exit' },
+  ],
+  links: [
+    { source: 0, target: 1, value: 1000 },
+    { source: 0, target: 5, value: 200 },
+    { source: 1, target: 2, value: 800 },
+    { source: 1, target: 5, value: 200 },
+    { source: 2, target: 3, value: 600 },
+    { source: 2, target: 5, value: 200 },
+    { source: 3, target: 4, value: 500 },
+    { source: 3, target: 5, value: 100 },
+  ],
+}
+
 export function ChartsPreview() {
   const theme = useThemeStore((state) => state.theme)
 
@@ -151,6 +198,12 @@ export function ChartsPreview() {
     theme.colors.border.hsl.h,
     theme.colors.border.hsl.s,
     theme.colors.border.hsl.l
+  )
+
+  const destructiveColor = hslToHex(
+    theme.colors.destructive.hsl.h,
+    theme.colors.destructive.hsl.s,
+    theme.colors.destructive.hsl.l
   )
 
   const chartColors = [primaryColor, secondaryColor, accentColor, mutedColor]
@@ -444,6 +497,212 @@ export function ChartsPreview() {
                   </div>
                 )
               })}
+            </div>
+          </div>
+        </div>
+
+        {/* Treemap Chart */}
+        <div className="bg-card p-4 rounded-lg border">
+          <h3 className="text-lg font-semibold mb-4">Content Categories</h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <Treemap
+              data={treemapData}
+              dataKey="size"
+              aspectRatio={4 / 3}
+              stroke={borderColor}
+              fill={primaryColor}
+              content={({ x, y, width, height, name, value }) => (
+                <g>
+                  <rect
+                    x={x}
+                    y={y}
+                    width={width}
+                    height={height}
+                    style={{
+                      fill: chartColors[Math.floor(Math.random() * chartColors.length)],
+                      stroke: borderColor,
+                      strokeWidth: 2,
+                      strokeOpacity: 0.5,
+                    }}
+                  />
+                  <text
+                    x={x + width / 2}
+                    y={y + height / 2}
+                    fill={foregroundColor}
+                    textAnchor="middle"
+                    dominantBaseline="central"
+                    fontSize={14}
+                    fontWeight="bold"
+                  >
+                    {name}
+                  </text>
+                  <text
+                    x={x + width / 2}
+                    y={y + height / 2 + 20}
+                    fill={foregroundColor}
+                    textAnchor="middle"
+                    dominantBaseline="central"
+                    fontSize={12}
+                    opacity={0.8}
+                  >
+                    {value}
+                  </text>
+                </g>
+              )}
+            />
+          </ResponsiveContainer>
+        </div>
+
+        {/* Stacked Area Chart */}
+        <div className="bg-card p-4 rounded-lg border">
+          <h3 className="text-lg font-semibold mb-4">Traffic Sources</h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <AreaChart data={stackedAreaData}>
+              <CartesianGrid strokeDasharray="3 3" stroke={borderColor} />
+              <XAxis dataKey="month" stroke={foregroundColor} />
+              <YAxis stroke={foregroundColor} />
+              <Tooltip
+                contentStyle={{ backgroundColor: theme.colors.card.value, borderColor: borderColor }}
+                labelStyle={{ color: foregroundColor }}
+                itemStyle={{ color: foregroundColor }}
+              />
+              <Legend wrapperStyle={{ color: foregroundColor }} />
+              <Area type="monotone" dataKey="mobile" stackId="1" stroke={primaryColor} fill={primaryColor} fillOpacity={0.8} />
+              <Area type="monotone" dataKey="desktop" stackId="1" stroke={secondaryColor} fill={secondaryColor} fillOpacity={0.8} />
+              <Area type="monotone" dataKey="tablet" stackId="1" stroke={accentColor} fill={accentColor} fillOpacity={0.8} />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Donut Chart */}
+        <div className="bg-card p-4 rounded-lg border">
+          <h3 className="text-lg font-semibold mb-4">Revenue Distribution</h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <PieChart>
+              <Pie
+                data={pieData}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                label={({ name, percentage }) => `${name}: ${percentage}%`}
+                outerRadius={100}
+                innerRadius={60}
+                fill="#8884d8"
+                dataKey="value"
+              >
+                {pieData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={chartColors[index % chartColors.length]} />
+                ))}
+              </Pie>
+              <Tooltip
+                contentStyle={{ backgroundColor: theme.colors.card.value, borderColor: borderColor }}
+                labelStyle={{ color: foregroundColor }}
+                itemStyle={{ color: foregroundColor }}
+              />
+            </PieChart>
+          </ResponsiveContainer>
+          <div className="text-center mt-2">
+            <div className="text-2xl font-bold text-primary">$2.4M</div>
+            <div className="text-sm text-muted-foreground">Total Revenue</div>
+          </div>
+        </div>
+
+        {/* Waterfall Chart (Custom Implementation) */}
+        <div className="bg-card p-4 rounded-lg border">
+          <h3 className="text-lg font-semibold mb-4">Financial Waterfall</h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={waterfallData}>
+              <CartesianGrid strokeDasharray="3 3" stroke={borderColor} />
+              <XAxis dataKey="name" stroke={foregroundColor} />
+              <YAxis stroke={foregroundColor} />
+              <Tooltip
+                contentStyle={{ backgroundColor: theme.colors.card.value, borderColor: borderColor }}
+                labelStyle={{ color: foregroundColor }}
+                itemStyle={{ color: foregroundColor }}
+              />
+              <Bar dataKey="value" fill={primaryColor}>
+                {waterfallData.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={
+                      entry.fill === 'primary' ? primaryColor :
+                      entry.fill === 'accent' ? accentColor :
+                      entry.fill === 'destructive' ? destructiveColor :
+                      primaryColor
+                    }
+                  />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Gauge Chart */}
+        <div className="bg-card p-4 rounded-lg border">
+          <h3 className="text-lg font-semibold mb-4">Performance Score</h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <RadialBarChart cx="50%" cy="50%" innerRadius="30%" outerRadius="90%" data={gaugeData}>
+              <RadialBar
+                minAngle={15}
+                background
+                clockWise
+                dataKey="value"
+                cornerRadius={10}
+                fill={primaryColor}
+              />
+              <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle">
+                <tspan x="50%" dy="-10" fontSize="36" fontWeight="bold" fill={foregroundColor}>
+                  75%
+                </tspan>
+                <tspan x="50%" dy="30" fontSize="16" fill={mutedColor}>
+                  Performance
+                </tspan>
+              </text>
+            </RadialBarChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Sankey Diagram (Custom Flow Visualization) */}
+        <div className="bg-card p-4 rounded-lg border col-span-full">
+          <h3 className="text-lg font-semibold mb-4">User Journey Flow</h3>
+          <div className="w-full py-4" style={{ minHeight: '300px' }}>
+            <div className="flex justify-between items-center px-8">
+              {sankeyData.nodes.map((node, index) => (
+                <div key={index} className="text-center">
+                  <div
+                    className="px-4 py-2 rounded-lg font-semibold"
+                    style={{
+                      backgroundColor: chartColors[index % chartColors.length],
+                      color: '#ffffff'
+                    }}
+                  >
+                    {node.name}
+                  </div>
+                  {index < sankeyData.nodes.length - 1 && (
+                    <div className="mt-4">
+                      <svg width="100" height="2" className="mx-auto">
+                        <line
+                          x1="0"
+                          y1="1"
+                          x2="100"
+                          y2="1"
+                          stroke={mutedColor}
+                          strokeWidth="2"
+                          markerEnd="url(#arrowhead)"
+                        />
+                        <defs>
+                          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill={mutedColor} />
+                          </marker>
+                        </defs>
+                      </svg>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+            <div className="text-center mt-8 text-sm text-muted-foreground">
+              Flow visualization showing user journey through conversion stages
             </div>
           </div>
         </div>
