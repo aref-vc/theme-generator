@@ -1046,9 +1046,11 @@ export function PreviewPanel() {
 
           <TabsContent value="design" className="px-8 py-8">
             <Tabs defaultValue="colors" className="w-full">
-              <TabsList className="mb-6">
+              <TabsList className="mb-6 grid grid-cols-4 w-full">
                 <TabsTrigger value="colors">Colors</TabsTrigger>
                 <TabsTrigger value="typography">Typography</TabsTrigger>
+                <TabsTrigger value="radius">Radius</TabsTrigger>
+                <TabsTrigger value="shadows">Shadows</TabsTrigger>
               </TabsList>
 
               <TabsContent value="colors" className="space-y-8">
@@ -1152,6 +1154,183 @@ export function PreviewPanel() {
                       <div className="font-medium">Medium Text (500)</div>
                       <div className="font-normal">Normal Text (400)</div>
                       <div className="font-light">Light Text (300)</div>
+                    </div>
+                  </div>
+                </section>
+              </TabsContent>
+
+              <TabsContent value="radius" className="space-y-8">
+                <section className="space-y-6">
+                  <h3 className="text-lg font-semibold">Border Radius</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    {Object.entries(theme.effects.borderRadius).map(([key, value]) => (
+                      <div key={key} className="space-y-2">
+                        <div
+                          className="h-24 bg-primary flex items-center justify-center text-primary-foreground text-sm"
+                          style={{ borderRadius: value }}
+                        >
+                          {key}
+                        </div>
+                        <p className="text-xs text-center text-muted-foreground font-mono">
+                          {value}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <Separator />
+
+                  {/* Combined Examples */}
+                  <div className="space-y-4">
+                    <h4 className="font-medium">Applied to Components</h4>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+                      <Card style={{ borderRadius: theme.effects.borderRadius.sm }}>
+                        <CardHeader>
+                          <CardTitle className="text-base">Small Radius Card</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-sm">This card uses small border radius.</p>
+                        </CardContent>
+                      </Card>
+
+                      <Card style={{ borderRadius: theme.effects.borderRadius.lg }}>
+                        <CardHeader>
+                          <CardTitle className="text-base">Large Radius Card</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-sm">This card uses large border radius.</p>
+                        </CardContent>
+                      </Card>
+
+                      <Card style={{ borderRadius: theme.effects.borderRadius['2xl'] }}>
+                        <CardHeader>
+                          <CardTitle className="text-base">2XL Radius Card</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-sm">This card uses 2XL border radius.</p>
+                        </CardContent>
+                      </Card>
+                    </div>
+
+                    <div className="flex flex-wrap gap-3">
+                      <Button style={{ borderRadius: theme.effects.borderRadius.sm }}>Small Radius</Button>
+                      <Button style={{ borderRadius: theme.effects.borderRadius.md }}>Medium Radius</Button>
+                      <Button style={{ borderRadius: theme.effects.borderRadius.lg }}>Large Radius</Button>
+                      <Button style={{ borderRadius: theme.effects.borderRadius.full }}>Full Radius</Button>
+                    </div>
+                  </div>
+                </section>
+              </TabsContent>
+
+              <TabsContent value="shadows" className="space-y-8">
+                <section className="space-y-6">
+                  <h3 className="text-lg font-semibold">Shadows</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {Object.entries(theme.effects.shadows).map(([key, value]) => (
+                      <div key={key} className="space-y-2">
+                        <div
+                          className="h-32 bg-card rounded-lg flex items-center justify-center"
+                          style={{ boxShadow: value }}
+                        >
+                          <span className="text-sm font-medium">Shadow {key}</span>
+                        </div>
+                        <p className="text-xs text-muted-foreground font-mono text-center">
+                          {key}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <Separator />
+
+                  {/* Combined Effects */}
+                  <div className="space-y-4">
+                    <h4 className="font-medium">Shadow + Radius Combinations</h4>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+                      <Card
+                        style={{
+                          borderRadius: theme.effects.borderRadius.lg,
+                          boxShadow: theme.effects.shadows.md
+                        }}
+                      >
+                        <CardHeader>
+                          <CardTitle className="text-base">Medium Shadow + Large Radius</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-sm">This card combines medium shadow with large border radius.</p>
+                        </CardContent>
+                      </Card>
+
+                      <Card
+                        style={{
+                          borderRadius: theme.effects.borderRadius.xl,
+                          boxShadow: theme.effects.shadows.lg
+                        }}
+                      >
+                        <CardHeader>
+                          <CardTitle className="text-base">Large Shadow + XL Radius</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-sm">This card combines large shadow with extra large border radius.</p>
+                        </CardContent>
+                      </Card>
+
+                      <Card
+                        style={{
+                          borderRadius: theme.effects.borderRadius['2xl'],
+                          boxShadow: theme.effects.shadows.xl
+                        }}
+                      >
+                        <CardHeader>
+                          <CardTitle className="text-base">XL Shadow + 2XL Radius</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-sm">This card combines extra large shadow with 2XL border radius.</p>
+                        </CardContent>
+                      </Card>
+
+                      <Card
+                        style={{
+                          borderRadius: theme.effects.borderRadius.sm,
+                          boxShadow: theme.effects.shadows.inner
+                        }}
+                      >
+                        <CardHeader>
+                          <CardTitle className="text-base">Inner Shadow + Small Radius</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-sm">This card uses inner shadow with small border radius.</p>
+                        </CardContent>
+                      </Card>
+
+                      <Card
+                        className="hover:shadow-2xl transition-shadow duration-300"
+                        style={{
+                          borderRadius: theme.effects.borderRadius.lg,
+                          boxShadow: theme.effects.shadows.sm
+                        }}
+                      >
+                        <CardHeader>
+                          <CardTitle className="text-base">Hover Shadow Effect</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-sm">Hover over this card to see shadow transition.</p>
+                        </CardContent>
+                      </Card>
+
+                      <Card
+                        style={{
+                          borderRadius: theme.effects.borderRadius['3xl'],
+                          boxShadow: theme.effects.shadows['2xl']
+                        }}
+                      >
+                        <CardHeader>
+                          <CardTitle className="text-base">2XL Shadow + 3XL Radius</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-sm">Maximum shadow with smooth rounded corners.</p>
+                        </CardContent>
+                      </Card>
                     </div>
                   </div>
                 </section>
