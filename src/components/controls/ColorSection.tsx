@@ -4,7 +4,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 import { Label } from '@/components/ui/label'
-import { useThemeStore, type ThemeColor } from '@/store/themeStore'
+import { useThemeStore, type ThemeColor, type Theme } from '@/store/themeStore'
 import { HexColorPicker } from 'react-colorful'
 import { Palette } from 'lucide-react'
 import { useState } from 'react'
@@ -58,7 +58,7 @@ function hexToRgb(hex: string): { r: number; g: number; b: number } {
 
 interface ColorPickerProps {
   label: string
-  colorKey: keyof ReturnType<typeof useThemeStore>['theme']['colors']
+  colorKey: keyof Theme['colors']
   color: ThemeColor
 }
 

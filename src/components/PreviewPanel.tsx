@@ -11,11 +11,8 @@ import {
   CheckCircle2,
   AlertCircle,
   Info,
-  Calendar,
   Users,
-  Settings,
   Heart,
-  Star,
   Zap,
   ArrowRight,
   Download
@@ -38,7 +35,9 @@ export function PreviewPanel() {
           <TabsList>
             <TabsTrigger value="components">Components</TabsTrigger>
             <TabsTrigger value="typography">Typography</TabsTrigger>
-            <TabsTrigger value="colors">Color Palette</TabsTrigger>
+            <TabsTrigger value="spacing">Spacing</TabsTrigger>
+            <TabsTrigger value="effects">Effects</TabsTrigger>
+            <TabsTrigger value="colors">Colors</TabsTrigger>
           </TabsList>
 
           <TabsContent value="components" className="space-y-8 mt-8">
@@ -261,6 +260,198 @@ export function PreviewPanel() {
                   <div className="font-medium">Medium Text (500)</div>
                   <div className="font-normal">Normal Text (400)</div>
                   <div className="font-light">Light Text (300)</div>
+                </div>
+              </div>
+            </section>
+          </TabsContent>
+
+          <TabsContent value="spacing" className="space-y-8 mt-8">
+            <section className="space-y-6">
+              <h3 className="text-lg font-semibold">Spacing System</h3>
+
+              {/* Spacing Scale */}
+              <div className="space-y-4">
+                <p className="text-sm text-muted-foreground">Base unit: {theme.spacing.base}px</p>
+                <div className="space-y-3">
+                  {Object.entries(theme.spacing.scale).map(([key, value]) => (
+                    <div key={key} className="flex items-center gap-4">
+                      <span className="w-12 text-sm font-mono">{key}</span>
+                      <div
+                        className="bg-primary h-8 rounded"
+                        style={{ width: `${value * theme.spacing.base * 4}px` }}
+                      />
+                      <span className="text-sm text-muted-foreground">
+                        {(value * theme.spacing.base).toFixed(1)}px
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <Separator />
+
+              {/* Padding Examples */}
+              <div className="space-y-4">
+                <h4 className="font-medium">Padding Examples</h4>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="border rounded-lg overflow-hidden">
+                    <div className="bg-muted" style={{ padding: `${theme.spacing.scale.sm * theme.spacing.base}px` }}>
+                      <div className="bg-background rounded p-2 text-center">Small Padding</div>
+                    </div>
+                  </div>
+                  <div className="border rounded-lg overflow-hidden">
+                    <div className="bg-muted" style={{ padding: `${theme.spacing.scale.md * theme.spacing.base}px` }}>
+                      <div className="bg-background rounded p-2 text-center">Medium Padding</div>
+                    </div>
+                  </div>
+                  <div className="border rounded-lg overflow-hidden">
+                    <div className="bg-muted" style={{ padding: `${theme.spacing.scale.lg * theme.spacing.base}px` }}>
+                      <div className="bg-background rounded p-2 text-center">Large Padding</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <Separator />
+
+              {/* Gap Examples */}
+              <div className="space-y-4">
+                <h4 className="font-medium">Gap Examples</h4>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-sm text-muted-foreground mb-2">Small gap</p>
+                    <div className="flex" style={{ gap: `${theme.spacing.scale.sm * theme.spacing.base}px` }}>
+                      <div className="bg-primary text-primary-foreground rounded p-4 flex-1 text-center">Item 1</div>
+                      <div className="bg-primary text-primary-foreground rounded p-4 flex-1 text-center">Item 2</div>
+                      <div className="bg-primary text-primary-foreground rounded p-4 flex-1 text-center">Item 3</div>
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground mb-2">Medium gap</p>
+                    <div className="flex" style={{ gap: `${theme.spacing.scale.md * theme.spacing.base}px` }}>
+                      <div className="bg-secondary text-secondary-foreground rounded p-4 flex-1 text-center">Item 1</div>
+                      <div className="bg-secondary text-secondary-foreground rounded p-4 flex-1 text-center">Item 2</div>
+                      <div className="bg-secondary text-secondary-foreground rounded p-4 flex-1 text-center">Item 3</div>
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground mb-2">Large gap</p>
+                    <div className="flex" style={{ gap: `${theme.spacing.scale.lg * theme.spacing.base}px` }}>
+                      <div className="bg-accent text-accent-foreground rounded p-4 flex-1 text-center">Item 1</div>
+                      <div className="bg-accent text-accent-foreground rounded p-4 flex-1 text-center">Item 2</div>
+                      <div className="bg-accent text-accent-foreground rounded p-4 flex-1 text-center">Item 3</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </TabsContent>
+
+          <TabsContent value="effects" className="space-y-8 mt-8">
+            <section className="space-y-6">
+              {/* Border Radius */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold">Border Radius</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {Object.entries(theme.effects.borderRadius).map(([key, value]) => (
+                    <div key={key} className="space-y-2">
+                      <div
+                        className="h-24 bg-primary flex items-center justify-center text-primary-foreground text-sm"
+                        style={{ borderRadius: value }}
+                      >
+                        {key}
+                      </div>
+                      <p className="text-xs text-center text-muted-foreground font-mono">
+                        {value}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <Separator />
+
+              {/* Shadows */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold">Shadows</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {Object.entries(theme.effects.shadows).map(([key, value]) => (
+                    <div key={key} className="space-y-2">
+                      <div
+                        className="h-32 bg-card rounded-lg flex items-center justify-center"
+                        style={{ boxShadow: value }}
+                      >
+                        <span className="text-sm font-medium">Shadow {key}</span>
+                      </div>
+                      <p className="text-xs text-muted-foreground font-mono text-center">
+                        {key}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <Separator />
+
+              {/* Combined Effects */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold">Combined Effects</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <Card
+                    style={{
+                      borderRadius: theme.effects.borderRadius.lg,
+                      boxShadow: theme.effects.shadows.md
+                    }}
+                  >
+                    <CardHeader>
+                      <CardTitle>Medium Shadow + Large Radius</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p>This card combines medium shadow with large border radius.</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card
+                    style={{
+                      borderRadius: theme.effects.borderRadius.xl,
+                      boxShadow: theme.effects.shadows.lg
+                    }}
+                  >
+                    <CardHeader>
+                      <CardTitle>Large Shadow + XL Radius</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p>This card combines large shadow with extra large border radius.</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card
+                    style={{
+                      borderRadius: theme.effects.borderRadius['2xl'],
+                      boxShadow: theme.effects.shadows.xl
+                    }}
+                  >
+                    <CardHeader>
+                      <CardTitle>XL Shadow + 2XL Radius</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p>This card combines extra large shadow with 2XL border radius.</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card
+                    style={{
+                      borderRadius: theme.effects.borderRadius.sm,
+                      boxShadow: theme.effects.shadows.inner
+                    }}
+                  >
+                    <CardHeader>
+                      <CardTitle>Inner Shadow + Small Radius</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p>This card uses inner shadow with small border radius.</p>
+                    </CardContent>
+                  </Card>
                 </div>
               </div>
             </section>

@@ -18,10 +18,11 @@ function App() {
       root.classList.remove('dark')
     }
 
-    // Apply CSS variables for colors
+    // Apply CSS variables for colors, typography, spacing, and effects
     const style = document.createElement('style')
     style.textContent = `
       :root {
+        /* Colors */
         --primary: ${theme.colors.primary.hsl.h} ${theme.colors.primary.hsl.s}% ${theme.colors.primary.hsl.l}%;
         --secondary: ${theme.colors.secondary.hsl.h} ${theme.colors.secondary.hsl.s}% ${theme.colors.secondary.hsl.l}%;
         --accent: ${theme.colors.accent.hsl.h} ${theme.colors.accent.hsl.s}% ${theme.colors.accent.hsl.l}%;
@@ -33,8 +34,125 @@ function App() {
         --border: ${theme.colors.border.hsl.h} ${theme.colors.border.hsl.s}% ${theme.colors.border.hsl.l}%;
         --input: ${theme.colors.input.hsl.h} ${theme.colors.input.hsl.s}% ${theme.colors.input.hsl.l}%;
         --ring: ${theme.colors.ring.hsl.h} ${theme.colors.ring.hsl.s}% ${theme.colors.ring.hsl.l}%;
+
+        /* Typography */
+        --font-family: ${theme.typography.fontFamily};
+        --font-size-xs: ${theme.typography.fontSize.xs};
+        --font-size-sm: ${theme.typography.fontSize.sm};
+        --font-size-base: ${theme.typography.fontSize.base};
+        --font-size-lg: ${theme.typography.fontSize.lg};
+        --font-size-xl: ${theme.typography.fontSize.xl};
+        --font-size-2xl: ${theme.typography.fontSize['2xl']};
+        --font-size-3xl: ${theme.typography.fontSize['3xl']};
+        --font-size-4xl: ${theme.typography.fontSize['4xl']};
+        --font-size-5xl: ${theme.typography.fontSize['5xl']};
+        --font-weight-light: ${theme.typography.fontWeight.light};
+        --font-weight-normal: ${theme.typography.fontWeight.normal};
+        --font-weight-medium: ${theme.typography.fontWeight.medium};
+        --font-weight-semibold: ${theme.typography.fontWeight.semibold};
+        --font-weight-bold: ${theme.typography.fontWeight.bold};
+        --line-height-tight: ${theme.typography.lineHeight.tight};
+        --line-height-normal: ${theme.typography.lineHeight.normal};
+        --line-height-relaxed: ${theme.typography.lineHeight.relaxed};
+
+        /* Spacing */
+        --spacing-base: ${theme.spacing.base}px;
+        --spacing-xs: ${theme.spacing.scale.xs * theme.spacing.base}px;
+        --spacing-sm: ${theme.spacing.scale.sm * theme.spacing.base}px;
+        --spacing-md: ${theme.spacing.scale.md * theme.spacing.base}px;
+        --spacing-lg: ${theme.spacing.scale.lg * theme.spacing.base}px;
+        --spacing-xl: ${theme.spacing.scale.xl * theme.spacing.base}px;
+        --spacing-2xl: ${theme.spacing.scale['2xl'] * theme.spacing.base}px;
+        --spacing-3xl: ${theme.spacing.scale['3xl'] * theme.spacing.base}px;
+        --spacing-4xl: ${theme.spacing.scale['4xl'] * theme.spacing.base}px;
+        --spacing-5xl: ${theme.spacing.scale['5xl'] * theme.spacing.base}px;
+
+        /* Effects - Border Radius */
         --radius: ${theme.effects.borderRadius.lg};
+        --radius-none: ${theme.effects.borderRadius.none};
+        --radius-sm: ${theme.effects.borderRadius.sm};
+        --radius-md: ${theme.effects.borderRadius.md};
+        --radius-lg: ${theme.effects.borderRadius.lg};
+        --radius-xl: ${theme.effects.borderRadius.xl};
+        --radius-2xl: ${theme.effects.borderRadius['2xl']};
+        --radius-3xl: ${theme.effects.borderRadius['3xl']};
+        --radius-full: ${theme.effects.borderRadius.full};
+
+        /* Effects - Shadows */
+        --shadow-none: ${theme.effects.shadows.none};
+        --shadow-sm: ${theme.effects.shadows.sm};
+        --shadow-md: ${theme.effects.shadows.md};
+        --shadow-lg: ${theme.effects.shadows.lg};
+        --shadow-xl: ${theme.effects.shadows.xl};
+        --shadow-2xl: ${theme.effects.shadows['2xl']};
+        --shadow-inner: ${theme.effects.shadows.inner};
       }
+
+      /* Apply typography globally */
+      body, .font-sans {
+        font-family: var(--font-family);
+        font-size: var(--font-size-base);
+        line-height: var(--line-height-normal);
+      }
+
+      /* Typography utility classes */
+      .text-xs { font-size: var(--font-size-xs); }
+      .text-sm { font-size: var(--font-size-sm); }
+      .text-base { font-size: var(--font-size-base); }
+      .text-lg { font-size: var(--font-size-lg); }
+      .text-xl { font-size: var(--font-size-xl); }
+      .text-2xl { font-size: var(--font-size-2xl); }
+      .text-3xl { font-size: var(--font-size-3xl); }
+      .text-4xl { font-size: var(--font-size-4xl); }
+      .text-5xl { font-size: var(--font-size-5xl); }
+
+      .font-light { font-weight: var(--font-weight-light); }
+      .font-normal { font-weight: var(--font-weight-normal); }
+      .font-medium { font-weight: var(--font-weight-medium); }
+      .font-semibold { font-weight: var(--font-weight-semibold); }
+      .font-bold { font-weight: var(--font-weight-bold); }
+
+      .leading-tight { line-height: var(--line-height-tight); }
+      .leading-normal { line-height: var(--line-height-normal); }
+      .leading-relaxed { line-height: var(--line-height-relaxed); }
+
+      /* Spacing utility classes */
+      .p-xs { padding: var(--spacing-xs); }
+      .p-sm { padding: var(--spacing-sm); }
+      .p-md { padding: var(--spacing-md); }
+      .p-lg { padding: var(--spacing-lg); }
+      .p-xl { padding: var(--spacing-xl); }
+
+      .m-xs { margin: var(--spacing-xs); }
+      .m-sm { margin: var(--spacing-sm); }
+      .m-md { margin: var(--spacing-md); }
+      .m-lg { margin: var(--spacing-lg); }
+      .m-xl { margin: var(--spacing-xl); }
+
+      .gap-xs { gap: var(--spacing-xs); }
+      .gap-sm { gap: var(--spacing-sm); }
+      .gap-md { gap: var(--spacing-md); }
+      .gap-lg { gap: var(--spacing-lg); }
+      .gap-xl { gap: var(--spacing-xl); }
+
+      /* Shadow utility classes */
+      .shadow-none { box-shadow: var(--shadow-none); }
+      .shadow-sm { box-shadow: var(--shadow-sm); }
+      .shadow-md { box-shadow: var(--shadow-md); }
+      .shadow-lg { box-shadow: var(--shadow-lg); }
+      .shadow-xl { box-shadow: var(--shadow-xl); }
+      .shadow-2xl { box-shadow: var(--shadow-2xl); }
+      .shadow-inner { box-shadow: var(--shadow-inner); }
+
+      /* Border radius utility classes */
+      .rounded-none { border-radius: var(--radius-none); }
+      .rounded-sm { border-radius: var(--radius-sm); }
+      .rounded-md { border-radius: var(--radius-md); }
+      .rounded-lg { border-radius: var(--radius-lg); }
+      .rounded-xl { border-radius: var(--radius-xl); }
+      .rounded-2xl { border-radius: var(--radius-2xl); }
+      .rounded-3xl { border-radius: var(--radius-3xl); }
+      .rounded-full { border-radius: var(--radius-full); }
     `
     document.head.appendChild(style)
 
