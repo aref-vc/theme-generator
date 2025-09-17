@@ -1,7 +1,6 @@
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Accordion } from '@/components/ui/accordion'
-import { ColorSection } from './controls/ColorSection'
-import { TypographySection } from './controls/TypographySection'
+import { DesignSection } from './controls/DesignSection'
 import { SpacingSection } from './controls/SpacingSection'
 import { EffectsSection } from './controls/EffectsSection'
 import { PresetsSection } from './controls/PresetsSection'
@@ -14,12 +13,11 @@ export function ControlsSidebar() {
 
         <Accordion
           type="multiple"
-          defaultValue={['colors', 'typography', 'spacing', 'effects']}
+          defaultValue={['design', 'spacing', 'effects']}
           className="space-y-4"
         >
           <PresetsSection />
-          <ColorSection />
-          <TypographySection />
+          <DesignSection />
           <SpacingSection />
           <EffectsSection />
         </Accordion>

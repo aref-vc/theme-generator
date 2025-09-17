@@ -60,10 +60,9 @@ export function PreviewPanel() {
           <TabsList className="w-full flex px-8">
             <TabsTrigger value="components" className="flex-1">Components</TabsTrigger>
             <TabsTrigger value="charts" className="flex-1">Charts</TabsTrigger>
-            <TabsTrigger value="typography" className="flex-1">Typography</TabsTrigger>
+            <TabsTrigger value="design" className="flex-1">Design</TabsTrigger>
             <TabsTrigger value="spacing" className="flex-1">Spacing</TabsTrigger>
             <TabsTrigger value="effects" className="flex-1">Effects</TabsTrigger>
-            <TabsTrigger value="colors" className="flex-1">Colors</TabsTrigger>
           </TabsList>
 
           <TabsContent value="components" className="px-8 py-8 space-y-8">
@@ -86,6 +85,148 @@ export function PreviewPanel() {
                 <Button size="icon">
                   <Heart className="h-4 w-4" />
                 </Button>
+              </div>
+            </section>
+
+            <Separator />
+
+            {/* Checkboxes, Toggles, Radios & Badges */}
+            <section className="space-y-4">
+              <h3 className="text-lg font-semibold">Selection Controls & Badges</h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6">
+                {/* Checkboxes */}
+                <div className="space-y-3">
+                  <h4 className="text-sm font-medium">Checkboxes</h4>
+                  <div className="space-y-2">
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input type="checkbox" className="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary" defaultChecked />
+                      <span className="text-sm">Checked option</span>
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input type="checkbox" className="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary" />
+                      <span className="text-sm">Unchecked option</span>
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input type="checkbox" className="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary" disabled defaultChecked />
+                      <span className="text-sm text-muted-foreground">Disabled checked</span>
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input type="checkbox" className="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary" disabled />
+                      <span className="text-sm text-muted-foreground">Disabled unchecked</span>
+                    </label>
+                  </div>
+                </div>
+
+                {/* Toggle Switches */}
+                <div className="space-y-3">
+                  <h4 className="text-sm font-medium">Toggle Switches</h4>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm">Notifications</span>
+                      <button
+                        className="relative inline-flex h-6 w-11 items-center rounded-full bg-primary transition-colors"
+                        onClick={(e) => {
+                          e.currentTarget.classList.toggle('bg-primary');
+                          e.currentTarget.classList.toggle('bg-muted');
+                          const circle = e.currentTarget.querySelector('span');
+                          circle?.classList.toggle('translate-x-6');
+                          circle?.classList.toggle('translate-x-1');
+                        }}
+                      >
+                        <span className="inline-block h-4 w-4 transform rounded-full bg-white transition-transform translate-x-6" />
+                      </button>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm">Dark mode</span>
+                      <button
+                        className="relative inline-flex h-6 w-11 items-center rounded-full bg-muted transition-colors"
+                        onClick={(e) => {
+                          e.currentTarget.classList.toggle('bg-primary');
+                          e.currentTarget.classList.toggle('bg-muted');
+                          const circle = e.currentTarget.querySelector('span');
+                          circle?.classList.toggle('translate-x-6');
+                          circle?.classList.toggle('translate-x-1');
+                        }}
+                      >
+                        <span className="inline-block h-4 w-4 transform rounded-full bg-white transition-transform translate-x-1" />
+                      </button>
+                    </div>
+                    <div className="flex items-center justify-between opacity-50">
+                      <span className="text-sm text-muted-foreground">Disabled on</span>
+                      <button className="relative inline-flex h-6 w-11 items-center rounded-full bg-primary opacity-50" disabled>
+                        <span className="inline-block h-4 w-4 transform rounded-full bg-white translate-x-6" />
+                      </button>
+                    </div>
+                    <div className="flex items-center justify-between opacity-50">
+                      <span className="text-sm text-muted-foreground">Disabled off</span>
+                      <button className="relative inline-flex h-6 w-11 items-center rounded-full bg-muted opacity-50" disabled>
+                        <span className="inline-block h-4 w-4 transform rounded-full bg-white translate-x-1" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Radio Buttons */}
+                <div className="space-y-3">
+                  <h4 className="text-sm font-medium">Radio Buttons</h4>
+                  <div className="space-y-2">
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input type="radio" name="example" className="w-4 h-4 text-primary focus:ring-primary" defaultChecked />
+                      <span className="text-sm">Option 1 (selected)</span>
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input type="radio" name="example" className="w-4 h-4 text-primary focus:ring-primary" />
+                      <span className="text-sm">Option 2</span>
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input type="radio" name="example" className="w-4 h-4 text-primary focus:ring-primary" />
+                      <span className="text-sm">Option 3</span>
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input type="radio" name="disabled" className="w-4 h-4 text-primary focus:ring-primary" disabled defaultChecked />
+                      <span className="text-sm text-muted-foreground">Disabled selected</span>
+                    </label>
+                  </div>
+                </div>
+
+                {/* Badges */}
+                <div className="space-y-3">
+                  <h4 className="text-sm font-medium">Badges</h4>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge>Default</Badge>
+                    <Badge variant="secondary">Secondary</Badge>
+                    <Badge variant="destructive">Destructive</Badge>
+                    <Badge variant="outline">Outline</Badge>
+                    <div className="flex gap-2">
+                      <Badge className="gap-1">
+                        <Star className="h-3 w-3" />
+                        Featured
+                      </Badge>
+                      <Badge variant="secondary" className="gap-1">
+                        <Clock className="h-3 w-3" />
+                        Pending
+                      </Badge>
+                    </div>
+                    <div className="flex gap-2">
+                      <Badge className="bg-green-500/10 text-green-500 hover:bg-green-500/20">
+                        Active
+                      </Badge>
+                      <Badge className="bg-yellow-500/10 text-yellow-500 hover:bg-yellow-500/20">
+                        Warning
+                      </Badge>
+                      <Badge className="bg-blue-500/10 text-blue-500 hover:bg-blue-500/20">
+                        Info
+                      </Badge>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Badge className="rounded-full">99+</Badge>
+                      <Badge variant="destructive" className="rounded-full">New</Badge>
+                      <Badge variant="secondary" className="rounded-full">
+                        <span className="mr-1">●</span> Live
+                      </Badge>
+                    </div>
+                  </div>
+                </div>
               </div>
             </section>
 
@@ -902,43 +1043,119 @@ export function PreviewPanel() {
             </section>
           </TabsContent>
 
-          <TabsContent value="typography" className="px-8 py-8 space-y-8">
-            <section className="space-y-6">
-              <div style={{ fontFamily: theme.typography.fontFamily }}>
-                <h1 className="text-5xl font-bold mb-4">Heading 1</h1>
-                <h2 className="text-4xl font-bold mb-4">Heading 2</h2>
-                <h3 className="text-3xl font-bold mb-4">Heading 3</h3>
-                <h4 className="text-2xl font-bold mb-4">Heading 4</h4>
-                <h5 className="text-xl font-bold mb-4">Heading 5</h5>
-                <h6 className="text-lg font-bold mb-4">Heading 6</h6>
+          <TabsContent value="design" className="px-8 py-8">
+            <Tabs defaultValue="colors" className="w-full">
+              <TabsList className="mb-6">
+                <TabsTrigger value="colors">Colors</TabsTrigger>
+                <TabsTrigger value="typography">Typography</TabsTrigger>
+              </TabsList>
 
-                <Separator className="my-8" />
+              <TabsContent value="colors" className="space-y-8">
+                <section className="space-y-6">
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {Object.entries(theme.colors).map(([key, color]) => (
+                      <div key={key} className="space-y-2">
+                        <div
+                          className="h-24 rounded-lg border"
+                          style={{ backgroundColor: color.value }}
+                        />
+                        <div>
+                          <p className="font-medium capitalize">{key}</p>
+                          <p className="text-xs text-muted-foreground font-mono">
+                            {color.value}
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            HSL: {color.hsl.h}, {color.hsl.s}%, {color.hsl.l}%
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
 
-                <div className="space-y-4">
-                  <p className="text-base leading-relaxed">
-                    This is a paragraph with regular text. Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    This is small muted text that can be used for descriptions or secondary content.
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    This is extra small text for captions or metadata.
-                  </p>
-                </div>
+                  <Separator />
 
-                <Separator className="my-8" />
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold">Color Combinations</h3>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+                      <Card className="bg-primary text-primary-foreground">
+                        <CardHeader>
+                          <CardTitle>Primary on Background</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p>This shows how primary color looks on the default background.</p>
+                        </CardContent>
+                      </Card>
 
-                <div className="space-y-4">
-                  <div className="font-bold">Bold Text (700)</div>
-                  <div className="font-semibold">Semibold Text (600)</div>
-                  <div className="font-medium">Medium Text (500)</div>
-                  <div className="font-normal">Normal Text (400)</div>
-                  <div className="font-light">Light Text (300)</div>
-                </div>
-              </div>
-            </section>
+                      <Card className="bg-secondary text-secondary-foreground">
+                        <CardHeader>
+                          <CardTitle>Secondary on Background</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p>This shows how secondary color looks on the default background.</p>
+                        </CardContent>
+                      </Card>
+
+                      <Card className="bg-accent text-accent-foreground">
+                        <CardHeader>
+                          <CardTitle>Accent on Background</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p>This shows how accent color looks on the default background.</p>
+                        </CardContent>
+                      </Card>
+
+                      <Card className="bg-muted text-muted-foreground">
+                        <CardHeader>
+                          <CardTitle>Muted on Background</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p>This shows how muted color looks on the default background.</p>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </div>
+                </section>
+              </TabsContent>
+
+              <TabsContent value="typography" className="space-y-8">
+                <section className="space-y-6">
+                  <div style={{ fontFamily: theme.typography.fontFamily }}>
+                    <h1 className="text-5xl font-bold mb-4">Heading 1</h1>
+                    <h2 className="text-4xl font-bold mb-4">Heading 2</h2>
+                    <h3 className="text-3xl font-bold mb-4">Heading 3</h3>
+                    <h4 className="text-2xl font-bold mb-4">Heading 4</h4>
+                    <h5 className="text-xl font-bold mb-4">Heading 5</h5>
+                    <h6 className="text-lg font-bold mb-4">Heading 6</h6>
+
+                    <Separator className="my-8" />
+
+                    <div className="space-y-4">
+                      <p className="text-base leading-relaxed">
+                        This is a paragraph with regular text. Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna
+                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        This is small muted text that can be used for descriptions or secondary content.
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        This is extra small text for captions or metadata.
+                      </p>
+                    </div>
+
+                    <Separator className="my-8" />
+
+                    <div className="space-y-4">
+                      <div className="font-bold">Bold Text (700)</div>
+                      <div className="font-semibold">Semibold Text (600)</div>
+                      <div className="font-medium">Medium Text (500)</div>
+                      <div className="font-normal">Normal Text (400)</div>
+                      <div className="font-light">Light Text (300)</div>
+                    </div>
+                  </div>
+                </section>
+              </TabsContent>
+            </Tabs>
           </TabsContent>
 
           <TabsContent value="spacing" className="px-8 py-8 space-y-8">
@@ -1133,72 +1350,6 @@ export function PreviewPanel() {
             </section>
           </TabsContent>
 
-          <TabsContent value="colors" className="px-8 py-8 space-y-8">
-            <section className="space-y-6">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {Object.entries(theme.colors).map(([key, color]) => (
-                  <div key={key} className="space-y-2">
-                    <div
-                      className="h-24 rounded-lg border"
-                      style={{ backgroundColor: color.value }}
-                    />
-                    <div>
-                      <p className="font-medium capitalize">{key}</p>
-                      <p className="text-xs text-muted-foreground font-mono">
-                        {color.value}
-                      </p>
-                      <p className="text-xs text-muted-foreground">
-                        HSL: {color.hsl.h}, {color.hsl.s}%, {color.hsl.l}%
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <Separator />
-
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold">Color Combinations</h3>
-                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-                  <Card className="bg-primary text-primary-foreground">
-                    <CardHeader>
-                      <CardTitle>Primary on Background</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p>This shows how primary color looks on the default background.</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="bg-secondary text-secondary-foreground">
-                    <CardHeader>
-                      <CardTitle>Secondary on Background</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p>This shows how secondary color looks on the default background.</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="bg-accent text-accent-foreground">
-                    <CardHeader>
-                      <CardTitle>Accent on Background</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p>This shows how accent color looks on the default background.</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="bg-muted text-muted-foreground">
-                    <CardHeader>
-                      <CardTitle>Muted on Background</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p>This shows how muted color looks on the default background.</p>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-            </section>
-          </TabsContent>
 
           {/* Charts Tab */}
           <TabsContent value="charts" className="px-8 py-8">
