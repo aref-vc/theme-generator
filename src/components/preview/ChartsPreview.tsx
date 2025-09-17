@@ -292,10 +292,10 @@ export function ChartsPreview() {
                 }}
               />
               <Legend wrapperStyle={{ color: foregroundColor }} />
-              <Bar dataKey="q1" fill={primaryColor} />
-              <Bar dataKey="q2" fill={secondaryColor} />
-              <Bar dataKey="q3" fill={accentColor} />
-              <Bar dataKey="q4" fill={mutedColor} />
+              <Bar dataKey="q1" fill={primaryColor} radius={[8, 8, 0, 0]} />
+              <Bar dataKey="q2" fill={secondaryColor} radius={[8, 8, 0, 0]} />
+              <Bar dataKey="q3" fill={accentColor} radius={[8, 8, 0, 0]} />
+              <Bar dataKey="q4" fill={mutedColor} radius={[8, 8, 0, 0]} />
             </BarChart>
             </ResponsiveContainer>
           </div>
@@ -339,9 +339,10 @@ export function ChartsPreview() {
                 outerRadius={120}
                 fill={primaryColor}
                 dataKey="value"
+                stroke="none"
               >
                 {pieData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={chartColors[index % chartColors.length]} />
+                  <Cell key={`cell-${index}`} fill={chartColors[index % chartColors.length]} stroke="none" />
                 ))}
               </Pie>
               <Tooltip
@@ -420,7 +421,7 @@ export function ChartsPreview() {
                 }}
               />
               <Legend wrapperStyle={{ color: foregroundColor }} />
-              <Bar dataKey="costs" fill={accentColor} />
+              <Bar dataKey="costs" fill={accentColor} radius={[8, 8, 0, 0]} />
               <Line type="monotone" dataKey="revenue" stroke={primaryColor} strokeWidth={2} />
               <Area type="monotone" dataKey="profit" fill={secondaryColor} fillOpacity={0.3} stroke={secondaryColor} />
             </ComposedChart>
@@ -451,55 +452,6 @@ export function ChartsPreview() {
           </div>
         </div>
 
-        {/* Custom Funnel Chart */}
-        <div className="bg-card p-4 rounded-lg border col-span-full">
-          <h3 className="text-lg font-semibold mb-4">Conversion Funnel</h3>
-          <div className="w-full flex justify-center items-center py-4" style={{ minHeight: '300px' }}>
-            <div className="flex flex-col items-center gap-3 w-full max-w-md">
-              {funnelData.map((entry, index) => {
-                const widthPercentage = 100 - (index * 20) // Each step is 20% narrower
-                const maxValue = funnelData[0].value
-                const relativeWidth = (entry.value / maxValue) * 100
-
-                return (
-                  <div
-                    key={index}
-                    className="relative flex flex-col items-center justify-center transition-all duration-300 hover:scale-105"
-                    style={{ width: '100%' }}
-                  >
-                    <div
-                      className="relative flex items-center justify-center font-semibold transition-all duration-300"
-                      style={{
-                        width: `${relativeWidth}%`,
-                        height: '60px',
-                        backgroundColor: chartColors[index % chartColors.length],
-                        borderRadius: theme.effects.borderRadius.lg,
-                        boxShadow: theme.effects.shadows.md,
-                        minWidth: '200px'
-                      }}
-                    >
-                      <div className="flex items-center gap-4 px-4" style={{ color: '#ffffff' }}>
-                        <div className="font-bold text-lg">{entry.name}</div>
-                        <div className="text-2xl font-bold">{entry.value}%</div>
-                      </div>
-                    </div>
-                    {index < funnelData.length - 1 && (
-                      <div
-                        className="w-0 h-0 mt-1 mb-1"
-                        style={{
-                          borderLeft: '8px solid transparent',
-                          borderRight: '8px solid transparent',
-                          borderTop: `8px solid ${mutedColor}`,
-                          opacity: 0.5
-                        }}
-                      />
-                    )}
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </div>
 
         {/* Treemap Chart */}
         <div className="bg-card p-4 rounded-lg border">
@@ -589,9 +541,10 @@ export function ChartsPreview() {
                 innerRadius={60}
                 fill="#8884d8"
                 dataKey="value"
+                stroke="none"
               >
                 {pieData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={chartColors[index % chartColors.length]} />
+                  <Cell key={`cell-${index}`} fill={chartColors[index % chartColors.length]} stroke="none" />
                 ))}
               </Pie>
               <Tooltip
@@ -620,7 +573,7 @@ export function ChartsPreview() {
                 labelStyle={{ color: foregroundColor }}
                 itemStyle={{ color: foregroundColor }}
               />
-              <Bar dataKey="value" fill={primaryColor}>
+              <Bar dataKey="value" fill={primaryColor} radius={[8, 8, 0, 0]}>
                 {waterfallData.map((entry, index) => (
                   <Cell
                     key={`cell-${index}`}
@@ -641,11 +594,26 @@ export function ChartsPreview() {
         <div className="bg-card p-4 rounded-lg border">
           <h3 className="text-lg font-semibold mb-4">Performance Score</h3>
           <ResponsiveContainer width="100%" height={300}>
-            <RadialBarChart cx="50%" cy="50%" innerRadius="30%" outerRadius="90%" data={gaugeData}>
+            <RadialBarChart
+              cx="50%"
+              cy="50%"
+              innerRadius="60"
+              outerRadius="110"
+              startAngle={180}
+              endAngle={0}
+              data={[{ name: 'Performance', value: 75, fill: primaryColor }]}
+            >
+              <PolarGrid
+                gridType="circle"
+                radialLines={false}
+                stroke={borderColor}
+                strokeOpacity={0.2}
+                strokeWidth={1}
+              />
               <RadialBar
                 minAngle={15}
-                background
-                clockWise
+                background={{ fill: mutedColor, opacity: 0.1 }}
+                clockWise={true}
                 dataKey="value"
                 cornerRadius={10}
                 fill={primaryColor}
@@ -660,6 +628,55 @@ export function ChartsPreview() {
               </text>
             </RadialBarChart>
           </ResponsiveContainer>
+        </div>
+
+        {/* Conversion Funnel */}
+        <div className="bg-card p-4 rounded-lg border">
+          <h3 className="text-lg font-semibold mb-4">Conversion Funnel</h3>
+          <div className="w-full flex justify-center items-center py-4" style={{ minHeight: '300px' }}>
+            <div className="flex flex-col items-center gap-2 w-full max-w-sm">
+              {funnelData.map((entry, index) => {
+                const maxValue = funnelData[0].value
+                const relativeWidth = (entry.value / maxValue) * 100
+
+                return (
+                  <div
+                    key={index}
+                    className="relative flex flex-col items-center justify-center transition-all duration-300 hover:scale-105"
+                    style={{ width: '100%' }}
+                  >
+                    <div
+                      className="relative flex items-center justify-center font-semibold transition-all duration-300"
+                      style={{
+                        width: `${relativeWidth}%`,
+                        height: '50px',
+                        backgroundColor: chartColors[index % chartColors.length],
+                        borderRadius: theme.effects.borderRadius.lg,
+                        boxShadow: theme.effects.shadows.sm,
+                        minWidth: '150px'
+                      }}
+                    >
+                      <div className="flex items-center gap-3 px-3" style={{ color: '#ffffff' }}>
+                        <div className="font-bold text-sm">{entry.name}</div>
+                        <div className="text-lg font-bold">{entry.value}%</div>
+                      </div>
+                    </div>
+                    {index < funnelData.length - 1 && (
+                      <div
+                        className="w-0 h-0 mt-0.5 mb-0.5"
+                        style={{
+                          borderLeft: '6px solid transparent',
+                          borderRight: '6px solid transparent',
+                          borderTop: `6px solid ${mutedColor}`,
+                          opacity: 0.3
+                        }}
+                      />
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
         </div>
 
         {/* Sankey Diagram (Custom Flow Visualization) */}
