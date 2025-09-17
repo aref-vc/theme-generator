@@ -425,10 +425,10 @@ export function PreviewPanel() {
             <section className="space-y-4">
               <h3 className="text-lg font-semibold">Alerts & Notifications</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <Card className="border-green-500/20 bg-green-500/5">
+                <Card className="border-primary/20 bg-primary/5">
                   <CardHeader className="pb-3">
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="h-5 w-5 text-green-500" />
+                      <CheckCircle2 className="h-5 w-5 text-primary" />
                       <CardTitle className="text-base">Success</CardTitle>
                     </div>
                   </CardHeader>
@@ -449,10 +449,10 @@ export function PreviewPanel() {
                   </CardContent>
                 </Card>
 
-                <Card className="border-blue-500/20 bg-blue-500/5">
+                <Card className="border-secondary/20 bg-secondary/5">
                   <CardHeader className="pb-3">
                     <div className="flex items-center gap-2">
-                      <Info className="h-5 w-5 text-blue-500" />
+                      <Info className="h-5 w-5 text-secondary" />
                       <CardTitle className="text-base">Information</CardTitle>
                     </div>
                   </CardHeader>
@@ -461,10 +461,10 @@ export function PreviewPanel() {
                   </CardContent>
                 </Card>
 
-                <Card className="border-yellow-500/20 bg-yellow-500/5">
+                <Card className="border-accent/20 bg-accent/5">
                   <CardHeader className="pb-3">
                     <div className="flex items-center gap-2">
-                      <AlertCircle className="h-5 w-5 text-yellow-500" />
+                      <AlertCircle className="h-5 w-5 text-accent" />
                       <CardTitle className="text-base">Warning</CardTitle>
                     </div>
                   </CardHeader>
@@ -473,10 +473,10 @@ export function PreviewPanel() {
                   </CardContent>
                 </Card>
 
-                <Card className="border-purple-500/20 bg-purple-500/5">
+                <Card className="border-primary/20 bg-primary/5">
                   <CardHeader className="pb-3">
                     <div className="flex items-center gap-2">
-                      <Zap className="h-5 w-5 text-purple-500" />
+                      <Zap className="h-5 w-5 text-primary" />
                       <CardTitle className="text-base">Update</CardTitle>
                     </div>
                   </CardHeader>
@@ -485,10 +485,10 @@ export function PreviewPanel() {
                   </CardContent>
                 </Card>
 
-                <Card className="border-orange-500/20 bg-orange-500/5">
+                <Card className="border-accent/20 bg-accent/5">
                   <CardHeader className="pb-3">
                     <div className="flex items-center gap-2">
-                      <Clock className="h-5 w-5 text-orange-500" />
+                      <Clock className="h-5 w-5 text-accent" />
                       <CardTitle className="text-base">Pending</CardTitle>
                     </div>
                   </CardHeader>
@@ -511,20 +511,20 @@ export function PreviewPanel() {
                       <CardTitle className="text-sm font-medium text-muted-foreground">
                         Total Users
                       </CardTitle>
-                      <div className="h-8 w-8 rounded-full bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center">
-                        <Users className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                      <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                        <Users className="h-4 w-4 text-primary" />
                       </div>
                     </div>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">2,543</div>
                     <div className="flex items-center gap-2 text-xs">
-                      <TrendingUp className="h-3 w-3 text-green-500" />
-                      <span className="text-green-500">+12%</span>
+                      <TrendingUp className="h-3 w-3 text-primary" />
+                      <span className="text-primary">+12%</span>
                       <span className="text-muted-foreground">from last month</span>
                     </div>
                     <div className="mt-2 h-1 bg-secondary rounded-full overflow-hidden">
-                      <div className="h-full bg-blue-500 rounded-full" style={{ width: '72%' }} />
+                      <div className="h-full bg-primary rounded-full" style={{ width: '72%' }} />
                     </div>
                   </CardContent>
                 </Card>
@@ -535,20 +535,20 @@ export function PreviewPanel() {
                       <CardTitle className="text-sm font-medium text-muted-foreground">
                         Revenue
                       </CardTitle>
-                      <div className="h-8 w-8 rounded-full bg-green-100 dark:bg-green-900/20 flex items-center justify-center">
-                        <DollarSign className="h-4 w-4 text-green-600 dark:text-green-400" />
+                      <div className="h-8 w-8 rounded-full bg-accent/10 flex items-center justify-center">
+                        <DollarSign className="h-4 w-4 text-accent" />
                       </div>
                     </div>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">$45,231</div>
                     <div className="flex items-center gap-2 text-xs">
-                      <TrendingUp className="h-3 w-3 text-green-500" />
-                      <span className="text-green-500">+8.2%</span>
+                      <TrendingUp className="h-3 w-3 text-accent" />
+                      <span className="text-accent">+8.2%</span>
                       <span className="text-muted-foreground">from last month</span>
                     </div>
                     <div className="mt-2 h-1 bg-secondary rounded-full overflow-hidden">
-                      <div className="h-full bg-green-500 rounded-full" style={{ width: '85%' }} />
+                      <div className="h-full bg-accent rounded-full" style={{ width: '85%' }} />
                     </div>
                   </CardContent>
                 </Card>
@@ -559,22 +559,22 @@ export function PreviewPanel() {
                       <CardTitle className="text-sm font-medium text-muted-foreground">
                         Active Now
                       </CardTitle>
-                      <div className="h-8 w-8 rounded-full bg-purple-100 dark:bg-purple-900/20 flex items-center justify-center">
-                        <Activity className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+                      <div className="h-8 w-8 rounded-full bg-secondary/10 flex items-center justify-center">
+                        <Activity className="h-4 w-4 text-secondary" />
                       </div>
                     </div>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">573</div>
                     <div className="flex items-center gap-2 text-xs">
-                      <Zap className="h-3 w-3 text-purple-500" />
-                      <span className="text-purple-500">+201</span>
+                      <Zap className="h-3 w-3 text-secondary" />
+                      <span className="text-secondary">+201</span>
                       <span className="text-muted-foreground">since last hour</span>
                     </div>
                     <div className="mt-2 flex gap-0.5">
                       {[100, 80, 120, 90, 110, 130, 573].map((val, i) => (
-                        <div key={i} className="flex-1 bg-secondary rounded-full overflow-hidden" style={{ height: `${(val / 573) * 20}px` }}>
-                          <div className="h-full bg-purple-500" />
+                        <div key={i} className="flex-1 bg-muted rounded-full overflow-hidden" style={{ height: `${(val / 573) * 20}px` }}>
+                          <div className="h-full bg-secondary" />
                         </div>
                       ))}
                     </div>
@@ -587,23 +587,23 @@ export function PreviewPanel() {
                       <CardTitle className="text-sm font-medium text-muted-foreground">
                         Conversion Rate
                       </CardTitle>
-                      <div className="h-8 w-8 rounded-full bg-orange-100 dark:bg-orange-900/20 flex items-center justify-center">
-                        <TrendingUp className="h-4 w-4 text-orange-600 dark:text-orange-400" />
+                      <div className="h-8 w-8 rounded-full bg-accent/10 flex items-center justify-center">
+                        <TrendingUp className="h-4 w-4 text-accent" />
                       </div>
                     </div>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">3.24%</div>
                     <div className="flex items-center gap-2 text-xs">
-                      <TrendingUp className="h-3 w-3 text-green-500" />
-                      <span className="text-green-500">+0.5%</span>
+                      <TrendingUp className="h-3 w-3 text-primary" />
+                      <span className="text-primary">+0.5%</span>
                       <span className="text-muted-foreground">improvement</span>
                     </div>
                     <div className="mt-2 relative h-8 w-8">
                       <svg className="w-full h-full -rotate-90">
                         <circle cx="16" cy="16" r="12" stroke="currentColor" strokeWidth="3" fill="none" className="text-secondary" />
                         <circle cx="16" cy="16" r="12" stroke="currentColor" strokeWidth="3" fill="none"
-                          className="text-orange-500"
+                          className="text-accent"
                           strokeDasharray={`${3.24 * 75.4 / 100} 75.4`} />
                       </svg>
                       <div className="absolute inset-0 flex items-center justify-center">
@@ -619,23 +619,23 @@ export function PreviewPanel() {
                       <CardTitle className="text-sm font-medium text-muted-foreground">
                         Server Uptime
                       </CardTitle>
-                      <div className="h-8 w-8 rounded-full bg-cyan-100 dark:bg-cyan-900/20 flex items-center justify-center">
-                        <Shield className="h-4 w-4 text-cyan-600 dark:text-cyan-400" />
+                      <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                        <Shield className="h-4 w-4 text-primary" />
                       </div>
                     </div>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">99.9%</div>
                     <div className="flex items-center gap-2 text-xs">
-                      <Check className="h-3 w-3 text-green-500" />
-                      <span className="text-green-500">Operational</span>
+                      <Check className="h-3 w-3 text-primary" />
+                      <span className="text-primary">Operational</span>
                       <span className="text-muted-foreground">30d</span>
                     </div>
                     <div className="mt-2 grid grid-cols-10 gap-0.5">
                       {Array.from({ length: 30 }).map((_, i) => (
                         <div
                           key={i}
-                          className={`h-1 rounded-full ${i === 15 ? 'bg-red-500' : 'bg-green-500'}`}
+                          className={`h-1 rounded-full ${i === 15 ? 'bg-destructive' : 'bg-primary'}`}
                         />
                       ))}
                     </div>
@@ -648,35 +648,35 @@ export function PreviewPanel() {
                       <CardTitle className="text-sm font-medium text-muted-foreground">
                         Performance Score
                       </CardTitle>
-                      <div className="h-8 w-8 rounded-full bg-pink-100 dark:bg-pink-900/20 flex items-center justify-center">
-                        <BarChart3 className="h-4 w-4 text-pink-600 dark:text-pink-400" />
+                      <div className="h-8 w-8 rounded-full bg-secondary/10 flex items-center justify-center">
+                        <BarChart3 className="h-4 w-4 text-secondary" />
                       </div>
                     </div>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">92/100</div>
                     <div className="flex items-center gap-2 text-xs">
-                      <TrendingUp className="h-3 w-3 text-green-500" />
-                      <span className="text-green-500">+5 points</span>
+                      <TrendingUp className="h-3 w-3 text-primary" />
+                      <span className="text-primary">+5 points</span>
                       <span className="text-muted-foreground">this week</span>
                     </div>
                     <div className="mt-2 flex gap-1">
                       <div className="flex-1">
                         <div className="text-[8px] text-muted-foreground mb-0.5">Speed</div>
-                        <div className="h-1 bg-secondary rounded-full overflow-hidden">
-                          <div className="h-full bg-green-500 rounded-full" style={{ width: '95%' }} />
+                        <div className="h-1 bg-muted rounded-full overflow-hidden">
+                          <div className="h-full bg-primary rounded-full" style={{ width: '95%' }} />
                         </div>
                       </div>
                       <div className="flex-1">
                         <div className="text-[8px] text-muted-foreground mb-0.5">SEO</div>
-                        <div className="h-1 bg-secondary rounded-full overflow-hidden">
-                          <div className="h-full bg-yellow-500 rounded-full" style={{ width: '88%' }} />
+                        <div className="h-1 bg-muted rounded-full overflow-hidden">
+                          <div className="h-full bg-accent rounded-full" style={{ width: '88%' }} />
                         </div>
                       </div>
                       <div className="flex-1">
                         <div className="text-[8px] text-muted-foreground mb-0.5">A11y</div>
-                        <div className="h-1 bg-secondary rounded-full overflow-hidden">
-                          <div className="h-full bg-green-500 rounded-full" style={{ width: '93%' }} />
+                        <div className="h-1 bg-muted rounded-full overflow-hidden">
+                          <div className="h-full bg-primary rounded-full" style={{ width: '93%' }} />
                         </div>
                       </div>
                     </div>
@@ -706,8 +706,8 @@ export function PreviewPanel() {
                     <div className="mt-6 space-y-4">
                       {/* Step 1 - Completed */}
                       <div className="flex items-start gap-3">
-                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
-                          <Check className="h-4 w-4 text-white" />
+                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+                          <Check className="h-4 w-4 text-primary-foreground" />
                         </div>
                         <div className="flex-1">
                           <p className="font-medium text-sm">Project Setup</p>
@@ -723,7 +723,7 @@ export function PreviewPanel() {
                         <div className="flex-1">
                           <p className="font-medium text-sm">Development Phase</p>
                           <p className="text-xs text-muted-foreground">In progress - 75% complete</p>
-                          <div className="mt-2 w-full bg-secondary rounded-full h-1.5">
+                          <div className="mt-2 w-full bg-muted rounded-full h-1.5">
                             <div className="bg-primary h-1.5 rounded-full" style={{ width: '75%' }} />
                           </div>
                         </div>
