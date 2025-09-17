@@ -19,18 +19,43 @@ function App() {
     }
 
     // Apply CSS variables for colors, typography, spacing, and effects
+    // In dark mode, we need to intelligently adjust colors
+    const isDark = theme.mode === 'dark'
+
+    // Helper function to determine if a color is light or dark
+    const isLightColor = (l: number) => l > 50
+
+    // Get appropriate foreground for buttons/badges based on background lightness
+    const getPrimaryForeground = () => {
+      if (isLightColor(theme.colors.primary.hsl.l)) {
+        // Light primary color, use dark foreground
+        return isDark ? '0 0% 10%' : '0 0% 10%'
+      } else {
+        // Dark primary color, use light foreground
+        return isDark ? '0 0% 95%' : '0 0% 98%'
+      }
+    }
+
     const style = document.createElement('style')
     style.textContent = `
       :root {
         /* Colors */
         --primary: ${theme.colors.primary.hsl.h} ${theme.colors.primary.hsl.s}% ${theme.colors.primary.hsl.l}%;
+        --primary-foreground: ${getPrimaryForeground()};
         --secondary: ${theme.colors.secondary.hsl.h} ${theme.colors.secondary.hsl.s}% ${theme.colors.secondary.hsl.l}%;
+        --secondary-foreground: ${theme.colors.foreground.hsl.h} ${theme.colors.foreground.hsl.s}% ${theme.colors.foreground.hsl.l}%;
         --accent: ${theme.colors.accent.hsl.h} ${theme.colors.accent.hsl.s}% ${theme.colors.accent.hsl.l}%;
+        --accent-foreground: ${theme.colors.foreground.hsl.h} ${theme.colors.foreground.hsl.s}% ${theme.colors.foreground.hsl.l}%;
         --background: ${theme.colors.background.hsl.h} ${theme.colors.background.hsl.s}% ${theme.colors.background.hsl.l}%;
         --foreground: ${theme.colors.foreground.hsl.h} ${theme.colors.foreground.hsl.s}% ${theme.colors.foreground.hsl.l}%;
         --muted: ${theme.colors.muted.hsl.h} ${theme.colors.muted.hsl.s}% ${theme.colors.muted.hsl.l}%;
+        --muted-foreground: ${theme.colors.foreground.hsl.h} ${theme.colors.foreground.hsl.s}% ${Math.max(30, Math.min(70, theme.colors.foreground.hsl.l))}%;
         --card: ${theme.colors.card.hsl.h} ${theme.colors.card.hsl.s}% ${theme.colors.card.hsl.l}%;
+        --card-foreground: ${theme.colors.foreground.hsl.h} ${theme.colors.foreground.hsl.s}% ${theme.colors.foreground.hsl.l}%;
+        --popover: ${theme.colors.card.hsl.h} ${theme.colors.card.hsl.s}% ${theme.colors.card.hsl.l}%;
+        --popover-foreground: ${theme.colors.foreground.hsl.h} ${theme.colors.foreground.hsl.s}% ${theme.colors.foreground.hsl.l}%;
         --destructive: ${theme.colors.destructive.hsl.h} ${theme.colors.destructive.hsl.s}% ${theme.colors.destructive.hsl.l}%;
+        --destructive-foreground: ${isLightColor(theme.colors.destructive.hsl.l) ? '0 0% 10%' : '0 0% 98%'};
         --border: ${theme.colors.border.hsl.h} ${theme.colors.border.hsl.s}% ${theme.colors.border.hsl.l}%;
         --input: ${theme.colors.input.hsl.h} ${theme.colors.input.hsl.s}% ${theme.colors.input.hsl.l}%;
         --ring: ${theme.colors.ring.hsl.h} ${theme.colors.ring.hsl.s}% ${theme.colors.ring.hsl.l}%;
