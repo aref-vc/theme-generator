@@ -9,6 +9,7 @@ import { Separator } from '@/components/ui/separator'
 import { useThemeStore } from '@/store/themeStore'
 import { ChartsPreview } from '@/components/preview/ChartsPreview'
 import { AnimationsPreview } from '@/components/preview/AnimationsPreview'
+import { DashboardPreview } from '@/components/preview/DashboardPreview'
 import {
   CheckCircle2,
   AlertCircle,
@@ -17,27 +18,18 @@ import {
   Heart,
   Zap,
   ArrowRight,
-  BarChart3,
   Star,
   Clock,
   Check,
   Package,
   Shield,
-  TrendingUp,
-  Activity,
-  DollarSign,
   ShoppingCart,
   CreditCard,
-  Settings,
-  Bell,
   Search,
-  Menu,
-  User,
-  Home,
-  FileText,
-  PieChart,
-  Layers,
-  LogOut
+  DollarSign,
+  TrendingUp,
+  Activity,
+  BarChart3
 } from 'lucide-react'
 
 export function PreviewPanel() {
@@ -56,6 +48,7 @@ export function PreviewPanel() {
         <Tabs defaultValue="components" className="w-full">
           <TabsList className="w-full flex px-8">
             <TabsTrigger value="components" className="flex-1">Components</TabsTrigger>
+            <TabsTrigger value="dashboard" className="flex-1">Dashboard</TabsTrigger>
             <TabsTrigger value="charts" className="flex-1">Charts</TabsTrigger>
             <TabsTrigger value="design" className="flex-1">Design</TabsTrigger>
             <TabsTrigger value="spacing" className="flex-1">Spacing</TabsTrigger>
@@ -909,135 +902,10 @@ export function PreviewPanel() {
               </div>
             </section>
 
-            <Separator />
+          </TabsContent>
 
-            {/* Admin Panel Design */}
-            <section className="space-y-4">
-              <h3 className="text-lg font-semibold">Admin Panel Layout</h3>
-              <Card className="overflow-hidden">
-                <div className="flex h-[500px]">
-                  {/* Sidebar */}
-                  <div className="w-64 bg-card border-r">
-                    <div className="p-4 border-b">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-                          <Layers className="h-6 w-6 text-primary-foreground" />
-                        </div>
-                        <div>
-                          <p className="font-semibold">Admin Panel</p>
-                          <p className="text-xs text-muted-foreground">v2.0.1</p>
-                        </div>
-                      </div>
-                    </div>
-                    <nav className="p-4 space-y-2">
-                      <a className="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary text-primary-foreground">
-                        <Home className="h-4 w-4" />
-                        <span className="text-sm font-medium">Dashboard</span>
-                      </a>
-                      <a className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors">
-                        <Users className="h-4 w-4" />
-                        <span className="text-sm">Users</span>
-                        <Badge className="ml-auto" variant="secondary">12</Badge>
-                      </a>
-                      <a className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors">
-                        <FileText className="h-4 w-4" />
-                        <span className="text-sm">Content</span>
-                      </a>
-                      <a className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors">
-                        <PieChart className="h-4 w-4" />
-                        <span className="text-sm">Analytics</span>
-                      </a>
-                      <a className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors">
-                        <Settings className="h-4 w-4" />
-                        <span className="text-sm">Settings</span>
-                      </a>
-                      <div className="pt-4 mt-4 border-t">
-                        <a className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-destructive/10 hover:text-destructive transition-colors">
-                          <LogOut className="h-4 w-4" />
-                          <span className="text-sm">Logout</span>
-                        </a>
-                      </div>
-                    </nav>
-                  </div>
-
-                  {/* Main Content */}
-                  <div className="flex-1 flex flex-col">
-                    {/* Header */}
-                    <header className="h-14 border-b px-6 flex items-center justify-between bg-background">
-                      <div className="flex items-center gap-4">
-                        <Button variant="ghost" size="icon">
-                          <Menu className="h-5 w-5" />
-                        </Button>
-                        <div className="relative">
-                          <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-                          <Input className="pl-8 w-64" placeholder="Search..." />
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <Button variant="ghost" size="icon" className="relative">
-                          <Bell className="h-5 w-5" />
-                          <span className="absolute top-1 right-1 w-2 h-2 bg-destructive rounded-full" />
-                        </Button>
-                        <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-                            <User className="h-4 w-4 text-primary-foreground" />
-                          </div>
-                          <span className="text-sm font-medium">Admin User</span>
-                        </div>
-                      </div>
-                    </header>
-
-                    {/* Dashboard Content */}
-                    <div className="flex-1 p-6 bg-muted/30">
-                      <div className="grid grid-cols-4 gap-4 mb-6">
-                        <Card className="p-4">
-                          <div className="flex items-center justify-between mb-2">
-                            <p className="text-sm text-muted-foreground">Total Users</p>
-                            <Users className="h-4 w-4 text-muted-foreground" />
-                          </div>
-                          <p className="text-2xl font-bold">1,284</p>
-                          <p className="text-xs text-green-500">+12% from last month</p>
-                        </Card>
-                        <Card className="p-4">
-                          <div className="flex items-center justify-between mb-2">
-                            <p className="text-sm text-muted-foreground">Revenue</p>
-                            <DollarSign className="h-4 w-4 text-muted-foreground" />
-                          </div>
-                          <p className="text-2xl font-bold">$52,420</p>
-                          <p className="text-xs text-green-500">+8% from last month</p>
-                        </Card>
-                        <Card className="p-4">
-                          <div className="flex items-center justify-between mb-2">
-                            <p className="text-sm text-muted-foreground">Active Now</p>
-                            <Activity className="h-4 w-4 text-muted-foreground" />
-                          </div>
-                          <p className="text-2xl font-bold">423</p>
-                          <p className="text-xs text-muted-foreground">Real-time</p>
-                        </Card>
-                        <Card className="p-4">
-                          <div className="flex items-center justify-between mb-2">
-                            <p className="text-sm text-muted-foreground">Growth</p>
-                            <TrendingUp className="h-4 w-4 text-muted-foreground" />
-                          </div>
-                          <p className="text-2xl font-bold">+24.5%</p>
-                          <p className="text-xs text-green-500">Above target</p>
-                        </Card>
-                      </div>
-
-                      {/* Chart Placeholder */}
-                      <Card className="p-6">
-                        <CardHeader className="px-0 pt-0">
-                          <CardTitle>Analytics Overview</CardTitle>
-                        </CardHeader>
-                        <div className="h-48 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg flex items-center justify-center">
-                          <BarChart3 className="h-12 w-12 text-muted-foreground/30" />
-                        </div>
-                      </Card>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </section>
+          <TabsContent value="dashboard" className="px-8 py-8">
+            <DashboardPreview />
           </TabsContent>
 
           <TabsContent value="design" className="px-8 py-8">
