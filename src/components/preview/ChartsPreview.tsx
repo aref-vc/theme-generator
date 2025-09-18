@@ -26,11 +26,6 @@ import {
   RadialBarChart,
   RadialBar,
   Treemap,
-  Funnel,
-  FunnelChart,
-  LabelList,
-  Sankey,
-  Rectangle,
 } from 'recharts'
 
 // Sample data for different chart types
@@ -124,9 +119,7 @@ const waterfallData = [
   { name: 'End', value: 2500, fill: 'primary' },
 ]
 
-const gaugeData = [
-  { name: 'Performance', value: 75, fill: 'primary' },
-]
+// Removed unused gaugeData variable
 
 const sankeyData = {
   nodes: [
@@ -341,7 +334,7 @@ export function ChartsPreview() {
                 dataKey="value"
                 stroke="none"
               >
-                {pieData.map((entry, index) => (
+                {pieData.map((_entry, index) => (
                   <Cell key={`cell-${index}`} fill={chartColors[index % chartColors.length]} stroke="none" />
                 ))}
               </Pie>
@@ -543,7 +536,7 @@ export function ChartsPreview() {
                 dataKey="value"
                 stroke="none"
               >
-                {pieData.map((entry, index) => (
+                {pieData.map((_entry, index) => (
                   <Cell key={`cell-${index}`} fill={chartColors[index % chartColors.length]} stroke="none" />
                 ))}
               </Pie>
@@ -611,9 +604,7 @@ export function ChartsPreview() {
                 strokeWidth={1}
               />
               <RadialBar
-                minAngle={15}
                 background={{ fill: mutedColor, opacity: 0.1 }}
-                clockWise={true}
                 dataKey="value"
                 cornerRadius={10}
                 fill={primaryColor}

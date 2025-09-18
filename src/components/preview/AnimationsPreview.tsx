@@ -1,13 +1,11 @@
-import { useThemeStore } from '@/store/themeStore'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
-import { Loader2, RefreshCw, Clock, Search, Download, Upload, CheckCircle2, XCircle, AlertCircle, ArrowRight, Heart, Star, Send, Wifi, Zap, Package, Shield, TrendingUp } from 'lucide-react'
+import { Loader2, RefreshCw, Clock, Search, Download, Upload, CheckCircle2, XCircle, AlertCircle, ArrowRight, Heart, Star, Send, Wifi, Zap, Package, Shield } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
 export function AnimationsPreview() {
-  const theme = useThemeStore((state) => state.theme)
   const [progress, setProgress] = useState(0)
   const [skeletonLoading, setSkeletonLoading] = useState(true)
 
