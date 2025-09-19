@@ -1,3 +1,4 @@
+import React from 'react'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
@@ -10,6 +11,7 @@ import { useThemeStore } from '@/store/themeStore'
 import { ChartsPreview } from '@/components/preview/ChartsPreview'
 import { AnimationsPreview } from '@/components/preview/AnimationsPreview'
 import { DashboardPreview } from '@/components/preview/DashboardPreview'
+// import { ArcTimelineDemo } from '@/components/preview/ArcTimelineDemo'
 import {
   CheckCircle2,
   AlertCircle,
@@ -29,11 +31,27 @@ import {
   DollarSign,
   TrendingUp,
   Activity,
-  BarChart3
+  BarChart3,
+  Copy,
+  CheckCheck
 } from 'lucide-react'
 
 export function PreviewPanel() {
   const theme = useThemeStore((state) => state.theme)
+  const [copiedPalette, setCopiedPalette] = React.useState(false)
+
+  const copyColorPalette = () => {
+    const palette = Object.entries(theme.colors).map(([key, color]) => {
+      return `--${key}: ${color.hsl.h} ${color.hsl.s}% ${color.hsl.l}%;`
+    }).join('\n')
+
+    const fullPalette = `:root {\n${palette}\n}`
+
+    navigator.clipboard.writeText(fullPalette).then(() => {
+      setCopiedPalette(true)
+      setTimeout(() => setCopiedPalette(false), 2000)
+    })
+  }
 
   return (
     <ScrollArea className="h-full">
@@ -53,6 +71,7 @@ export function PreviewPanel() {
             <TabsTrigger value="design" className="flex-1">Design</TabsTrigger>
             <TabsTrigger value="spacing" className="flex-1">Spacing</TabsTrigger>
             <TabsTrigger value="effects" className="flex-1">Effects</TabsTrigger>
+            <TabsTrigger value="addons" className="flex-1">Add-Ons</TabsTrigger>
           </TabsList>
 
           <TabsContent value="components" className="px-8 py-8 space-y-8">
@@ -919,6 +938,27 @@ export function PreviewPanel() {
 
               <TabsContent value="colors" className="space-y-8">
                 <section className="space-y-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-semibold">Color Palette</h3>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={copyColorPalette}
+                      className="gap-2"
+                    >
+                      {copiedPalette ? (
+                        <>
+                          <CheckCheck className="h-4 w-4" />
+                          Copied!
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="h-4 w-4" />
+                          Copy Palette
+                        </>
+                      )}
+                    </Button>
+                  </div>
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {Object.entries(theme.colors).map(([key, color]) => (
                       <div key={key} className="space-y-2">
@@ -1292,6 +1332,259 @@ export function PreviewPanel() {
           {/* Charts Tab */}
           <TabsContent value="charts" className="px-8 py-8">
             <ChartsPreview />
+          </TabsContent>
+
+          {/* Add-Ons Tab */}
+          <TabsContent value="addons" className="px-8 py-8 space-y-8">
+
+            {/* Custom Plugins */}
+            <section className="space-y-4">
+              <h3 className="text-lg font-semibold">Custom Plugins</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Package className="h-5 w-5" />
+                      Animation Library
+                    </CardTitle>
+                    <CardDescription>
+                      Add smooth transitions and micro-interactions
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm">Fade animations</span>
+                        <Badge variant="secondary">Installed</Badge>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm">Slide transitions</span>
+                        <Badge variant="secondary">Installed</Badge>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm">Scale effects</span>
+                        <Badge variant="outline">Available</Badge>
+                      </div>
+                    </div>
+                  </CardContent>
+                  <CardFooter>
+                    <Button className="w-full">Configure</Button>
+                  </CardFooter>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Shield className="h-5 w-5" />
+                      Accessibility Tools
+                    </CardTitle>
+                    <CardDescription>
+                      Ensure your theme meets WCAG standards
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm">Contrast checker</span>
+                        <Badge>Active</Badge>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm">Focus indicators</span>
+                        <Badge>Active</Badge>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm">Screen reader hints</span>
+                        <Badge variant="secondary">Ready</Badge>
+                      </div>
+                    </div>
+                  </CardContent>
+                  <CardFooter>
+                    <Button variant="outline" className="w-full">Run Audit</Button>
+                  </CardFooter>
+                </Card>
+              </div>
+            </section>
+
+            <Separator />
+
+            {/* Extensions */}
+            <section className="space-y-4">
+              <h3 className="text-lg font-semibold">Theme Extensions</h3>
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                <Card>
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <Zap className="h-8 w-8 text-primary" />
+                      <Badge variant="secondary">Popular</Badge>
+                    </div>
+                    <CardTitle>Gradient Generator</CardTitle>
+                    <CardDescription>
+                      Create beautiful gradients with your theme colors
+                    </CardDescription>
+                  </CardHeader>
+                  <CardFooter>
+                    <Button size="sm" className="w-full">
+                      Install Extension
+                    </Button>
+                  </CardFooter>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <BarChart3 className="h-8 w-8 text-primary" />
+                      <Badge>New</Badge>
+                    </div>
+                    <CardTitle>Data Viz Pack</CardTitle>
+                    <CardDescription>
+                      Advanced chart themes and data visualization tools
+                    </CardDescription>
+                  </CardHeader>
+                  <CardFooter>
+                    <Button size="sm" className="w-full">
+                      Install Extension
+                    </Button>
+                  </CardFooter>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <Activity className="h-8 w-8 text-primary" />
+                      <Badge variant="outline">Beta</Badge>
+                    </div>
+                    <CardTitle>Motion Presets</CardTitle>
+                    <CardDescription>
+                      Pre-built animation sequences for common interactions
+                    </CardDescription>
+                  </CardHeader>
+                  <CardFooter>
+                    <Button size="sm" variant="secondary" className="w-full">
+                      Try Beta
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </div>
+            </section>
+
+            <Separator />
+
+            {/* Integrations */}
+            <section className="space-y-4">
+              <h3 className="text-lg font-semibold">Integrations</h3>
+              <div className="space-y-4">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Export Destinations</CardTitle>
+                    <CardDescription>
+                      Connect your theme to external tools and services
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="flex items-center justify-between p-3 border rounded-lg">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                            <span className="text-lg font-bold">F</span>
+                          </div>
+                          <div>
+                            <p className="font-medium">Figma</p>
+                            <p className="text-sm text-muted-foreground">Design tokens sync</p>
+                          </div>
+                        </div>
+                        <Button size="sm" variant="ghost">Connect</Button>
+                      </div>
+
+                      <div className="flex items-center justify-between p-3 border rounded-lg">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                            <span className="text-lg font-bold">S</span>
+                          </div>
+                          <div>
+                            <p className="font-medium">Storybook</p>
+                            <p className="text-sm text-muted-foreground">Component library</p>
+                          </div>
+                        </div>
+                        <Button size="sm" variant="ghost">Connect</Button>
+                      </div>
+
+                      <div className="flex items-center justify-between p-3 border rounded-lg">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                            <span className="text-lg font-bold">G</span>
+                          </div>
+                          <div>
+                            <p className="font-medium">GitHub</p>
+                            <p className="text-sm text-muted-foreground">Version control</p>
+                          </div>
+                        </div>
+                        <Button size="sm">Connected</Button>
+                      </div>
+
+                      <div className="flex items-center justify-between p-3 border rounded-lg">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                            <span className="text-lg font-bold">V</span>
+                          </div>
+                          <div>
+                            <p className="font-medium">VS Code</p>
+                            <p className="text-sm text-muted-foreground">Editor themes</p>
+                          </div>
+                        </div>
+                        <Button size="sm" variant="ghost">Connect</Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </section>
+
+            <Separator />
+
+            {/* Premium Features */}
+            <section className="space-y-4">
+              <h3 className="text-lg font-semibold">Premium Features</h3>
+              <Card className="border-primary/50 bg-primary/5">
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-xl">Upgrade to Pro</CardTitle>
+                    <Badge className="bg-gradient-to-r from-primary to-purple-600">PRO</Badge>
+                  </div>
+                  <CardDescription>
+                    Unlock advanced features and unlimited exports
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="h-5 w-5 text-primary" />
+                      <span>Unlimited theme exports</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="h-5 w-5 text-primary" />
+                      <span>Advanced color algorithms</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="h-5 w-5 text-primary" />
+                      <span>Team collaboration tools</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="h-5 w-5 text-primary" />
+                      <span>Priority support</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="h-5 w-5 text-primary" />
+                      <span>Custom brand presets</span>
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter>
+                  <Button className="w-full bg-gradient-to-r from-primary to-purple-600">
+                    Upgrade Now - $9/month
+                  </Button>
+                </CardFooter>
+              </Card>
+            </section>
           </TabsContent>
         </Tabs>
       </div>

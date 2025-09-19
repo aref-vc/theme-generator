@@ -2,12 +2,20 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
-import { Loader2, RefreshCw, Clock, Search, Download, Upload, CheckCircle2, XCircle, AlertCircle, ArrowRight, Heart, Star, Send, Wifi, Zap, Package, Shield } from 'lucide-react'
+import { Loader2, RefreshCw, Clock, Search, Download, Upload, CheckCircle2, XCircle, AlertCircle, ArrowRight, Heart, Star, Send, Wifi, Zap, Package, Shield, Copy, Check } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
 export function AnimationsPreview() {
   const [progress, setProgress] = useState(0)
   const [skeletonLoading, setSkeletonLoading] = useState(true)
+  const [copiedItem, setCopiedItem] = useState<string | null>(null)
+
+  const copyToClipboard = (code: string, itemId: string) => {
+    navigator.clipboard.writeText(code).then(() => {
+      setCopiedItem(itemId)
+      setTimeout(() => setCopiedItem(null), 2000)
+    })
+  }
 
   // Progress bar animation
   useEffect(() => {
@@ -35,7 +43,21 @@ export function AnimationsPreview() {
         <h3 className="text-lg font-semibold">Loading Spinners & Indicators</h3>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {/* Basic Spinner */}
-          <Card>
+          <Card className="relative group">
+            <button
+              onClick={() => copyToClipboard(
+                `<Loader2 className="h-8 w-8 animate-spin text-primary" />`,
+                'basic-spinner'
+              )}
+              className="absolute top-2 right-2 p-1.5 rounded-md bg-background/80 backdrop-blur-sm border opacity-0 group-hover:opacity-100 transition-opacity"
+              title="Copy code"
+            >
+              {copiedItem === 'basic-spinner' ? (
+                <Check className="h-3 w-3 text-primary" />
+              ) : (
+                <Copy className="h-3 w-3" />
+              )}
+            </button>
             <CardHeader className="pb-3">
               <CardTitle className="text-sm">Basic Spinner</CardTitle>
             </CardHeader>
@@ -47,7 +69,34 @@ export function AnimationsPreview() {
           </Card>
 
           {/* Pulsing Dots */}
-          <Card>
+          <Card className="relative group">
+            <button
+              onClick={() => copyToClipboard(
+                `<style>
+  @keyframes bounce {
+    0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
+    40% { transform: scale(1); opacity: 1; }
+  }
+  .dot1 { animation: bounce 1.4s infinite ease-in-out; }
+  .dot2 { animation: bounce 1.4s infinite ease-in-out 0.16s; }
+  .dot3 { animation: bounce 1.4s infinite ease-in-out 0.32s; }
+</style>
+<div className="flex justify-center items-center gap-1">
+  <div className="dot1 w-3 h-3 bg-primary rounded-full" />
+  <div className="dot2 w-3 h-3 bg-primary rounded-full" />
+  <div className="dot3 w-3 h-3 bg-primary rounded-full" />
+</div>`,
+                'pulsing-dots'
+              )}
+              className="absolute top-2 right-2 p-1.5 rounded-md bg-background/80 backdrop-blur-sm border opacity-0 group-hover:opacity-100 transition-opacity"
+              title="Copy code"
+            >
+              {copiedItem === 'pulsing-dots' ? (
+                <Check className="h-3 w-3 text-primary" />
+              ) : (
+                <Copy className="h-3 w-3" />
+              )}
+            </button>
             <CardHeader className="pb-3">
               <CardTitle className="text-sm">Pulsing Dots</CardTitle>
             </CardHeader>
@@ -78,7 +127,21 @@ export function AnimationsPreview() {
           </Card>
 
           {/* Rotating Icon */}
-          <Card>
+          <Card className="relative group">
+            <button
+              onClick={() => copyToClipboard(
+                `<RefreshCw className="h-8 w-8 animate-spin text-accent" />`,
+                'rotating-icon'
+              )}
+              className="absolute top-2 right-2 p-1.5 rounded-md bg-background/80 backdrop-blur-sm border opacity-0 group-hover:opacity-100 transition-opacity"
+              title="Copy code"
+            >
+              {copiedItem === 'rotating-icon' ? (
+                <Check className="h-3 w-3 text-primary" />
+              ) : (
+                <Copy className="h-3 w-3" />
+              )}
+            </button>
             <CardHeader className="pb-3">
               <CardTitle className="text-sm">Rotating Icon</CardTitle>
             </CardHeader>
@@ -90,7 +153,24 @@ export function AnimationsPreview() {
           </Card>
 
           {/* Pulse Animation */}
-          <Card>
+          <Card className="relative group">
+            <button
+              onClick={() => copyToClipboard(
+                `<div className="relative">
+  <div className="absolute inset-0 bg-primary rounded-full animate-ping opacity-75" />
+  <div className="relative w-8 h-8 bg-primary rounded-full" />
+</div>`,
+                'pulse-effect'
+              )}
+              className="absolute top-2 right-2 p-1.5 rounded-md bg-background/80 backdrop-blur-sm border opacity-0 group-hover:opacity-100 transition-opacity"
+              title="Copy code"
+            >
+              {copiedItem === 'pulse-effect' ? (
+                <Check className="h-3 w-3 text-primary" />
+              ) : (
+                <Copy className="h-3 w-3" />
+              )}
+            </button>
             <CardHeader className="pb-3">
               <CardTitle className="text-sm">Pulse Effect</CardTitle>
             </CardHeader>
