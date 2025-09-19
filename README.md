@@ -218,4 +218,4 @@ CMD ["npm", "run", "preview"]
 
 ---
 
-Built with ❤️ by [Your Name]
+Built with ❤️ using React and TypeScript
