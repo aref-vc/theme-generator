@@ -55,7 +55,7 @@ A powerful, real-time theme customization tool for modern web applications. Desi
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/theme-generator.git
+git clone https://github.com/[your-username]/theme-generator.git
 
 # Navigate to project
 cd theme-generator
