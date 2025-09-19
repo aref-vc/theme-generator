@@ -7,7 +7,7 @@ A powerful, real-time theme customization tool for modern web applications. Desi
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-![Modern Theme Generator Preview](./public/images/theme-generator-preview.png)
+![Modern Theme Generator Preview](./CleanShot%202025-09-20%20at%2008.33.14%402x.png)
 
 ## ✨ Features
 
